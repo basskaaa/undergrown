@@ -7,11 +7,23 @@ public class scp_Enemy_Ai_Hunting : MonoBehaviour
 {
     private scp_Enemy_Ai enemyAI;
 
+    private Collider huntRangeCollider;
+
     [SerializeField] private float waitToEndHuntTime = 4f;
 
     void Start()
     {
         enemyAI = GetComponentInParent<scp_Enemy_Ai>();
+        huntRangeCollider = GetComponent<Collider>();
+    }
+
+    void Update()
+    {
+        if (enemyAI._Attacking)
+        {
+            huntRangeCollider.enabled = false;
+        }
+        else huntRangeCollider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider collision)

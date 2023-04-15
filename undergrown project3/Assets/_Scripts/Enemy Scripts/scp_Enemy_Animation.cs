@@ -34,5 +34,10 @@ public class scp_Enemy_Animation : MonoBehaviour
         {
             enemyAnimRef.Play("anim_skeleton_run");
         }
+
+        if (enemyAI._Attacking)
+        {
+            enemyAnimRef.Play("anim_skeleton_attack");
+        }
     }
 }

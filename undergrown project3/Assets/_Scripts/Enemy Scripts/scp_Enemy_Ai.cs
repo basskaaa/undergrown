@@ -26,6 +26,7 @@ public class scp_Enemy_Ai : MonoBehaviour
     [HideInInspector] public bool _Patrolling = true;
     [HideInInspector] public bool _Hunting;
     [HideInInspector] public bool _Resting;
+    [HideInInspector] public bool _Attacking;
     private float restTime = 3f;
 
     void Start()
@@ -54,7 +55,7 @@ public class scp_Enemy_Ai : MonoBehaviour
             }
         }
 
-        if (_Hunting)
+        if (_Hunting || _Attacking)
         {
             setHuntTarget();
         }
@@ -79,7 +80,14 @@ public class scp_Enemy_Ai : MonoBehaviour
         {
             agent.enabled = true;
             agent.speed = RunningSpeed;
-            _Patrolling = false;
+            _Patrolling = false; _Resting = false;
+        }
+
+        if (_Attacking)
+        {
+            agent.enabled = true;
+            agent.speed = RunningSpeed;
+            _Patrolling = false; _Resting = false; _Hunting = false;
         }
     }
 
