@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class scp_Enemy_Ai_Attacking : MonoBehaviour
 {
+    [SerializeField] private float attackTime = .3f;
+
     private scp_Enemy_Ai enemyAI;
 
     void Start()
@@ -34,8 +36,14 @@ public class scp_Enemy_Ai_Attacking : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            enemyAI._Attacking = false;
-            enemyAI._Hunting = true;
+            StartCoroutine(finishAttackAnim());
         }
+    }
+
+    IEnumerator finishAttackAnim()
+    {
+        yield return new WaitForSeconds(attackTime);
+        enemyAI._Attacking = false;
+        enemyAI._Hunting = true;
     }
 }

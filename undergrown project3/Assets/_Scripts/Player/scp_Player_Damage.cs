@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class scp_Player_Damage : MonoBehaviour
 {
-    [SerializeField] private scp_Enemy_Ai enemyAI;
+    private scp_Player_Manager manager;
+    private scp_Enemy_Ai enemyAI;
+
+    private void Start()
+    {
+        manager = GetComponentInParent<scp_Player_Manager>();
+    }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "eWeapon")
         {
-            Debug.Log("You died");
+            enemyAI = collision.gameObject.GetComponentInParent<scp_Enemy_Ai>();
+
+            if (enemyAI._Attacking)
+            {
+                manager._Dying = true;
+                Debug.Log("You died");
+            }
         }
     }    
-    
-    private void OnTriggerExit(Collider collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Debug.Log("You died");
-        }
-    }
 }

@@ -85,8 +85,7 @@ public class scp_Enemy_Ai : MonoBehaviour
 
         if (_Attacking)
         {
-            agent.enabled = true;
-            agent.speed = RunningSpeed;
+            agent.speed = IdleSpeed;
             _Patrolling = false; _Resting = false; _Hunting = false;
         }
     }

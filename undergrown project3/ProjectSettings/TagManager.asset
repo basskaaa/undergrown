@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Interactable
+  - eWeapon
+  - Enemy
+  - CinemachineTarget
   layers:
   - Default
   - TransparentFX
@@ -12,8 +15,8 @@ TagManager:
   - EtraFPSUsableItem
   - Water
   - UI
-  - UI
   - Player
+  - 
   - 
   - 
   - 
