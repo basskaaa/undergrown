@@ -1,25 +1,24 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class scp_Enemy_Ai_Hunting : MonoBehaviour
+public class scp_Enemy_AI_Hunting : MonoBehaviour
 {
-    private scp_Enemy_Ai enemyAI;
+    private scp_Enemy_AI ai;
 
     private Collider huntRangeCollider;
 
-    [SerializeField] private float waitToEndHuntTime = 4f;
+    [SerializeField] private float WaitToEndHuntTime = 4f;
+    private bool playerDeadCheckFailsafe = false;
 
     void Start()
     {
-        enemyAI = GetComponentInParent<scp_Enemy_Ai>();
+        ai = GetComponentInParent<scp_Enemy_AI>();
         huntRangeCollider = GetComponent<Collider>();
     }
 
     void Update()
     {
-        if (enemyAI._Attacking)
+        if (ai._Attacking || ai._EnemyManager._PlayerManager._Dead)
         {
             huntRangeCollider.enabled = false;
         }
@@ -28,36 +27,45 @@ public class scp_Enemy_Ai_Hunting : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !ai._EnemyManager._PlayerManager._Dead)
         {
-            enemyAI._Hunting = true;
-            //Debug.Log("Hunt range entered");
+            ai._Hunting = true;
         }
     }
     
     private void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !ai._EnemyManager._PlayerManager._Dead)
         {
-            enemyAI._Hunting = true;
-            //Debug.Log("Hunt range entered");
+            ai._Hunting = true;
+        }
+
+        if (collision.gameObject.tag == "Player" && ai._EnemyManager._PlayerManager._Dead && !playerDeadCheckFailsafe)
+        {
+            playerDeadCheckFailsafe = true;
+
+            StartCoroutine(bug1());
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !ai._EnemyManager._PlayerManager._Dead)
         {
             StartCoroutine(WaitToEndHunt());
-            //Debug.Log("Hunt range exited");
         }
     }
 
     private IEnumerator WaitToEndHunt()
     {
-        yield return new WaitForSeconds(waitToEndHuntTime);
-        enemyAI._Hunting = false;
-        enemyAI._Patrolling = true;
-        //Debug.Log("Stopped hunting");
+        yield return new WaitForSeconds(WaitToEndHuntTime);
+        ai._Hunting = false;
+        ai._Patrolling = true;
+    }
+
+    private IEnumerator bug1()
+    {
+        yield return new WaitForSeconds(0.1f);
+        ai._PlayerDeadCheck = false;
     }
 }

@@ -1,17 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class scp_Enemy_Animation : MonoBehaviour
 {
+    private scp_Enemy_AI ai;
+    private scp_Enemy_Manager enemyManager;
+
     private Animator enemyAnimRef;
-    private scp_Enemy_Ai enemyAI;
 
     void Start()
     {
         enemyAnimRef = GetComponent<Animator>();
-        enemyAI = GetComponent<scp_Enemy_Ai>();
+        ai = GetComponent<scp_Enemy_AI>();
     }
 
     void Update()
@@ -21,22 +21,22 @@ public class scp_Enemy_Animation : MonoBehaviour
 
     private void updateAnim()
     {
-        if (enemyAI._Patrolling)
+        if (ai._Patrolling)
         {
             enemyAnimRef.Play("anim_skeleton_walk");
         }
 
-        if (enemyAI._Resting) 
+        if (ai._Resting) 
         {
             enemyAnimRef.Play("anim_skeleton_idle");
         }
 
-        if (enemyAI._Hunting) 
+        if (ai._Hunting) 
         {
             enemyAnimRef.Play("anim_skeleton_run");
         }
 
-        if (enemyAI._Attacking)
+        if (ai._Attacking)
         {
             enemyAnimRef.Play("anim_skeleton_attack");
         }

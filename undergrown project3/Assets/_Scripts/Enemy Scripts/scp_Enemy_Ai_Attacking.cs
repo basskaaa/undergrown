@@ -1,40 +1,38 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class scp_Enemy_Ai_Attacking : MonoBehaviour
+public class scp_Enemy_AI_Attacking : MonoBehaviour
 {
-    [SerializeField] private float attackTime = .3f;
+    private scp_Enemy_AI ai;
 
-    private scp_Enemy_Ai enemyAI;
+    [SerializeField] private float attackTime = .3f;
 
     void Start()
     {
-        enemyAI = GetComponentInParent<scp_Enemy_Ai>();
+        ai = GetComponentInParent<scp_Enemy_AI>();
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && ai._Hunting && !ai._EnemyManager._PlayerManager._Dead)
         {
-            enemyAI._Attacking = true;
+            ai._Attacking = true;
             //Debug.Log("Hunt range entered");
         }
     }
-    
+
     private void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !ai._EnemyManager._PlayerManager._Dead)
         {
-            enemyAI._Attacking = true;
+            ai._Attacking = true;
             //Debug.Log("Hunt range entered");
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !ai._EnemyManager._PlayerManager._Dead)
         {
             StartCoroutine(finishAttackAnim());
         }
@@ -43,7 +41,7 @@ public class scp_Enemy_Ai_Attacking : MonoBehaviour
     IEnumerator finishAttackAnim()
     {
         yield return new WaitForSeconds(attackTime);
-        enemyAI._Attacking = false;
-        enemyAI._Hunting = true;
+        ai._Attacking = false;
+        ai._Hunting = true;
     }
 }

@@ -1,26 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class scp_Player_Manager : MonoBehaviour
 {
-    [HideInInspector] public bool _Dying = false;
-    private CharacterController playerController;
-    private PlayerInput playerInput;
+    [HideInInspector] public bool _Dead = false;
+    [SerializeField] private bool canMoveCheck = true;
+
+    public GameObject _Player;
+
+    private ThirdPersonController thirdPersonController;
+    private scp_Player_Animation animManager;
+
+
 
     private void Start()
     {
-        playerController = GetComponent<CharacterController>();
-        playerInput = GetComponent<PlayerInput>();
+        thirdPersonController = _Player.GetComponent<ThirdPersonController>();
+        animManager = _Player.GetComponent<scp_Player_Animation>();
     }
 
     private void Update()
     {
-        if (_Dying)
+        if (_Dead)
         {
-            playerInput.enabled = false;
+            animManager._PlayDeathAnim = true;
+            canMoveCheck = false;
         }
+
+        if (!canMoveCheck)
+        {
+            cantMove();
+        }
+        else canMove();
+    }
+
+    private void cantMove()
+    {     
+        thirdPersonController.MoveSpeed = 0;
+        thirdPersonController.SprintSpeed = 0;
+        thirdPersonController.JumpHeight = 0;
+    }
+
+    private void canMove()
+    {
+        thirdPersonController.MoveSpeed = 2;
+        thirdPersonController.SprintSpeed = 6;
+        thirdPersonController.JumpHeight = 1.2f;
     }
 }

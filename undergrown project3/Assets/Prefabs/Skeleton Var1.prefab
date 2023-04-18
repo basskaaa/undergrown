@@ -117,7 +117,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  playerTf: {fileID: 0}
+  Player: {fileID: 7323019180116261658, guid: 9479e741c71220e45af0158f5a533618, type: 3}
+  _PlayerManager: {fileID: 0}
   _Patrolling: 1
   _Hunting: 0
   _Resting: 0
@@ -224,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e4775e55e571044ba9099c73a64a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitToEndHuntTime: 4
+  WaitToEndHuntTime: 4
 --- !u!1 &5412534695229573660
 GameObject:
   m_ObjectHideFlags: 0

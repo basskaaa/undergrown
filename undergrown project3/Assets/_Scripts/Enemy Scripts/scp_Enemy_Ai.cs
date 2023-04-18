@@ -1,22 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.AnimatedValues;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class scp_Enemy_Ai : MonoBehaviour
+public class scp_Enemy_AI : MonoBehaviour
 {
-    [Header("Enemy Variables")]
+    [Header("Enemy Settings")]
 
     [SerializeField] private float IdleSpeed = 1f;
     [SerializeField] private float WalkingSpeed = 6f;
     [SerializeField] private float RunningSpeed = 9f;
+    [SerializeField] private float RestTime = 3f;
 
     [Header("References")]
 
-    [SerializeField] private Transform[] Waypoints;
-    [SerializeField] private Transform playerTf;
+    public scp_Enemy_Manager _EnemyManager;
+    private Transform playerTf;
+    private Transform[] waypoints;
 
     private NavMeshAgent agent;
 
@@ -27,11 +26,14 @@ public class scp_Enemy_Ai : MonoBehaviour
     [HideInInspector] public bool _Hunting;
     [HideInInspector] public bool _Resting;
     [HideInInspector] public bool _Attacking;
-    private float restTime = 3f;
+    [HideInInspector] public bool _PlayerDeadCheck = false;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        playerTf = _EnemyManager._Player.transform;
+        waypoints = _EnemyManager._Waypoints;
+        
         updateDestination();
         updateBehaviour();
     }
@@ -55,9 +57,14 @@ public class scp_Enemy_Ai : MonoBehaviour
             }
         }
 
-        if (_Hunting || _Attacking)
+        if ((_Hunting || _Attacking) && !_PlayerDeadCheck)
         {
             setHuntTarget();
+        }
+
+        if (_EnemyManager._PlayerDead && !_PlayerDeadCheck)
+        {
+            _ReturnToPatrol();
         }
     }
 
@@ -76,7 +83,7 @@ public class scp_Enemy_Ai : MonoBehaviour
             agent.speed = IdleSpeed;
         }
 
-        if (_Hunting)
+        if (_Hunting && !_PlayerDeadCheck)
         {
             agent.enabled = true;
             agent.speed = RunningSpeed;
@@ -98,7 +105,7 @@ public class scp_Enemy_Ai : MonoBehaviour
 
     private void updateDestination()
     {
-        target = Waypoints[waypointIndex].position;
+        target = waypoints[waypointIndex].position;
         agent.SetDestination(target);
     }
 
@@ -106,7 +113,7 @@ public class scp_Enemy_Ai : MonoBehaviour
     {
         _Patrolling = false; _Resting = true;
 
-        yield return new WaitForSeconds(restTime);
+        yield return new WaitForSeconds(RestTime);
 
         _Resting = false; _Patrolling = true;
     }
@@ -115,5 +122,16 @@ public class scp_Enemy_Ai : MonoBehaviour
     {
         target = playerTf.position;
         agent.SetDestination(target);
+    }
+
+    public void _ReturnToPatrol()
+    {
+        _PlayerDeadCheck = true;
+        _Hunting = false;
+        _Attacking = false;
+        if (_Resting) return;
+        else _Patrolling = true;
+
+        Debug.Log(gameObject + "knows player is dead");
     }
 }
