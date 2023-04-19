@@ -12,8 +12,7 @@ public class scp_Player_Attack : MonoBehaviour
 
     private scp_Player_Manager_Holder h;
     private scp_Player_Manager playerManager;
-    private float attackTime;
-    [SerializeField] private float attackCooldown = 0.2f;
+    [SerializeField] private float attackCooldown = 0.3f;
     private bool attackReady = true;
     private bool isDead;
 
@@ -44,18 +43,16 @@ public class scp_Player_Attack : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        attackTime = playerManager._AnimManager._PlayerAnim.GetCurrentAnimatorStateInfo(0).length;
-
         attackReady = false;
         swordCollider.enabled = true;
 
         yield return new WaitForSeconds(0.7f);
 
         swordCollider.enabled = false;
-        playerManager._Attacking = false;
 
         yield return new WaitForSeconds(attackCooldown);
 
+        playerManager._Attacking = false;
         attackReady = true;
     }
 }

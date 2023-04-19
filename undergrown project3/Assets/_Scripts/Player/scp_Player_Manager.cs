@@ -49,7 +49,7 @@ public class scp_Player_Manager : MonoBehaviour
     {
         _ThirdPersonController.MoveSpeed = 0f;
         _ThirdPersonController.SprintSpeed = 0f;
-        _ThirdPersonController.SpeedChangeRate = 0f;
+        _ThirdPersonController.SpeedChangeRate = 20f;
         _ThirdPersonController.JumpHeight = 1.2f;
     }
 }

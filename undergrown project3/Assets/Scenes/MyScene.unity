@@ -162,7 +162,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28260
+  m_Name: pb_Mesh28226
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -2789,8 +2789,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 0
 --- !u!114 &1887920128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2803,7 +2803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3e38fcad4457c4bab649db241b74d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iFrames: 0.1
+  iFrames: 0.5
 --- !u!65 &1887920129
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4065,7 +4065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2004005714224146377, guid: 66b891bcb01734a4da63da67681814b7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2004005714224146378, guid: 66b891bcb01734a4da63da67681814b7, type: 3}
       propertyPath: m_RootOrder
@@ -4564,11 +4564,11 @@ MonoBehaviour:
   CameraDistance: 4
   CameraCollisionFilter:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 247
   IgnoreTag: Player
   CameraRadius: 0.15
-  DampingIntoCollision: 0
-  DampingFromCollision: 0
+  DampingIntoCollision: 0.5
+  DampingFromCollision: 0.5
 --- !u!114 &2035259384184375809
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -4598,6 +4598,7 @@ GameObject:
   - component: {fileID: 2035259384184375813}
   - component: {fileID: 2035259384184375809}
   - component: {fileID: 2035259384184375808}
+  - component: {fileID: 2035259384184375814}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -4632,6 +4633,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2035259384184375814
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035259384184375811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c41ac9245b87c4192012080077d830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Damping: 0
 --- !u!4 &3928287203193205586 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 630928595863072774, guid: 9479e741c71220e45af0158f5a533618, type: 3}
@@ -4650,7 +4664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sword: {fileID: 1903816630}
-  attackCooldown: 1
+  attackCooldown: 0.5
 --- !u!114 &3928287203193205595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4730,7 +4744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5412534693608701052, guid: 6d6477d54c09db846a6b3e0a84b227b5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
