@@ -4,13 +4,12 @@ using UnityEngine;
 public class scp_Enemy_Animation : MonoBehaviour
 {
     private scp_Enemy_AI ai;
-    private scp_Enemy_Manager enemyManager;
 
-    private Animator enemyAnimRef;
+    private Animator enemyAnim;
 
     void Start()
     {
-        enemyAnimRef = GetComponent<Animator>();
+        enemyAnim = GetComponent<Animator>();
         ai = GetComponent<scp_Enemy_AI>();
     }
 
@@ -21,24 +20,12 @@ public class scp_Enemy_Animation : MonoBehaviour
 
     private void updateAnim()
     {
-        if (ai._Patrolling)
-        {
-            enemyAnimRef.Play("anim_skeleton_walk");
-        }
+        if (ai._Patrolling) enemyAnim.Play("anim_skeleton_walk");
 
-        if (ai._Resting) 
-        {
-            enemyAnimRef.Play("anim_skeleton_idle");
-        }
+        if (ai._Resting) enemyAnim.Play("anim_skeleton_idle");
 
-        if (ai._Hunting) 
-        {
-            enemyAnimRef.Play("anim_skeleton_run");
-        }
+        if (ai._Hunting) enemyAnim.Play("anim_skeleton_run");
 
-        if (ai._Attacking)
-        {
-            enemyAnimRef.Play("anim_skeleton_attack");
-        }
+        if (ai._Attacking) enemyAnim.Play("anim_skeleton_attack");
     }
 }

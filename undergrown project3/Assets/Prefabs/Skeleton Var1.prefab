@@ -73,7 +73,7 @@ NavMeshAgent:
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 5000
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -110,19 +110,13 @@ MonoBehaviour:
   IdleSpeed: 1
   WalkingSpeed: 6
   RunningSpeed: 9
-  Waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Player: {fileID: 7323019180116261658, guid: 9479e741c71220e45af0158f5a533618, type: 3}
-  _PlayerManager: {fileID: 0}
+  RestTime: 3
+  _EnemyManager: {fileID: 0}
   _Patrolling: 1
   _Hunting: 0
   _Resting: 0
   _Attacking: 0
+  _PlayerDeadCheck: 0
 --- !u!114 &5412534693608701050
 MonoBehaviour:
   m_ObjectHideFlags: 0

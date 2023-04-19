@@ -132,6 +132,6 @@ public class scp_Enemy_AI : MonoBehaviour
         if (_Resting) return;
         else _Patrolling = true;
 
-        Debug.Log(gameObject + "knows player is dead");
+        //Debug.Log(gameObject + "knows player is dead");
     }
 }

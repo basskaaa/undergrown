@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class scp_Player_Damage : MonoBehaviour
 {
+    private scp_Player_Manager_Holder h;
     private scp_Player_Manager playerManager;
     private scp_Enemy_AI enemyAI;
 
     private void Start()
     {
-        playerManager = FindObjectOfType<scp_Player_Manager>();
+        h = GetComponentInParent<scp_Player_Manager_Holder>();
+        playerManager = h._Manager;
     }
 
     private void OnTriggerEnter(Collider collision)

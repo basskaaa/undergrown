@@ -2,20 +2,26 @@ using UnityEngine;
 
 public class scp_Player_Animation : MonoBehaviour
 {
-    private Animator playerAnimRef;
+    private scp_Player_Manager_Holder h;
+    private scp_Player_Manager playerManager;
 
-    public bool _PlayDeathAnim;
+    [HideInInspector] public Animator _PlayerAnim;
+    [HideInInspector] public bool _PlayDeathAnim;
 
     private void Start()
     {
-        playerAnimRef = GetComponent<Animator>();
+        h = GetComponent<scp_Player_Manager_Holder>();
+        playerManager = h._Manager;
+        _PlayerAnim = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (_PlayDeathAnim)
+        if (playerManager._Dead) _PlayerAnim.Play("anim_player_death");
+
+        if (playerManager._Attacking)
         {
-            playerAnimRef.Play("anim_player_death");
+            _PlayerAnim.Play("anim_player_attack");
         }
     }
 }
