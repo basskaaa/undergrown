@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class scp_Enemy_AI_Attacking : MonoBehaviour
+public class scp_Enemy_Ai_Attacking : MonoBehaviour
 {
     private scp_Enemy_AI ai;
 

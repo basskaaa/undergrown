@@ -99,7 +99,7 @@ public class scp_Enemy_AI : MonoBehaviour
 
     private void iterateWaypointIndex()
     {
-        int randWaypointIndex = Random.Range(0, 6);
+        int randWaypointIndex = Random.Range(0, 7);
         waypointIndex = randWaypointIndex;
     }
 

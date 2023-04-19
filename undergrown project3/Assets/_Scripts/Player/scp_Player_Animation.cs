@@ -15,7 +15,7 @@ public class scp_Player_Animation : MonoBehaviour
         _PlayerAnim = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (playerManager._Dead) _PlayerAnim.Play("anim_player_death");
 
