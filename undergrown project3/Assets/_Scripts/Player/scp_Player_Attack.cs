@@ -15,28 +15,27 @@ public class scp_Player_Attack : MonoBehaviour
     private float attackTime;
     [SerializeField] private float attackCooldown = 0.2f;
     private bool attackReady = true;
-
-    private ThirdPersonController thirdPersonController;
+    private bool isDead;
 
     private void Start()
     {
         h = GetComponent<scp_Player_Manager_Holder>();
         playerManager = h._Manager;
-        thirdPersonController = GetComponent<ThirdPersonController>();
         swordCollider = Sword.GetComponent<Collider>();
         swordCollider.enabled = false;
+        isDead = playerManager._Dead;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && attackReady)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && attackReady && !isDead)
         {
             playerManager._Attacking = true;
         }
 
         if (playerManager._Attacking)
         {
-            playerManager._CantMove();
+            playerManager._AttackMove();
             StartCoroutine(Attack());
         }
 
@@ -50,7 +49,7 @@ public class scp_Player_Attack : MonoBehaviour
         attackReady = false;
         swordCollider.enabled = true;
 
-        yield return new WaitForSeconds(attackTime * 0.1f);
+        yield return new WaitForSeconds(0.7f);
 
         swordCollider.enabled = false;
         playerManager._Attacking = false;

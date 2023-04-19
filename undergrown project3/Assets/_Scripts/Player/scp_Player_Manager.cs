@@ -4,8 +4,9 @@ using UnityEngine.InputSystem;
 
 public class scp_Player_Manager : MonoBehaviour
 {
-    [HideInInspector] public bool _Dead = false;
-    [HideInInspector] public bool _Attacking = false;
+    public bool _Dead = false;
+    public bool _Attacking = false;
+    public bool _Jump = false;
     [SerializeField] private bool canMoveCheck = true;
 
     public GameObject _Player;
@@ -23,21 +24,32 @@ public class scp_Player_Manager : MonoBehaviour
     {
         if (_Dead) canMoveCheck = false;
 
-        if (!canMoveCheck) _CantMove();
+        if (!canMoveCheck) cantMove();
+        if (_Attacking) _AttackMove();
         if (!_Attacking) canMove();
     }
 
-    public void _CantMove()
+    private void cantMove()
     {     
-        _ThirdPersonController.MoveSpeed = 0;
-        _ThirdPersonController.SprintSpeed = 0;
-        _ThirdPersonController.JumpHeight = 0;
+        _ThirdPersonController.MoveSpeed = 0f;
+        _ThirdPersonController.SprintSpeed = 0f;
+        _ThirdPersonController.SpeedChangeRate = 0f;
+        _ThirdPersonController.JumpHeight = 0f;
     }
 
     private void canMove()
     {
-        _ThirdPersonController.MoveSpeed = 2;
-        _ThirdPersonController.SprintSpeed = 6;
+        _ThirdPersonController.MoveSpeed = 2f;
+        _ThirdPersonController.SprintSpeed = 10f;
+        _ThirdPersonController.SpeedChangeRate = 10f;
+        _ThirdPersonController.JumpHeight = 1.2f;
+    }
+
+    public void _AttackMove()
+    {
+        _ThirdPersonController.MoveSpeed = 0f;
+        _ThirdPersonController.SprintSpeed = 0f;
+        _ThirdPersonController.SpeedChangeRate = 0f;
         _ThirdPersonController.JumpHeight = 1.2f;
     }
 }
