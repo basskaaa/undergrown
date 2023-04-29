@@ -21,7 +21,7 @@ public class scp_Player_Attack : MonoBehaviour
         h = GetComponent<scp_Player_Manager_Holder>();
         playerManager = h._Manager;
         swordCollider = Sword.GetComponent<Collider>();
-        swordCollider.enabled = false;
+        //swordCollider.enabled = false;
         isDead = playerManager._Dead;
     }
 
@@ -38,7 +38,7 @@ public class scp_Player_Attack : MonoBehaviour
             StartCoroutine(Attack());
         }
 
-        else swordCollider.enabled = false;
+        //else swordCollider.enabled = false;
     }
 
     private IEnumerator Attack()
@@ -48,7 +48,7 @@ public class scp_Player_Attack : MonoBehaviour
 
         yield return new WaitForSeconds(0.7f);
 
-        swordCollider.enabled = false;
+        //swordCollider.enabled = false;
 
         yield return new WaitForSeconds(attackCooldown);
 

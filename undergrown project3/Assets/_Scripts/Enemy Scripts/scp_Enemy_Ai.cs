@@ -14,23 +14,30 @@ public class scp_Enemy_AI : MonoBehaviour
     [Header("References")]
 
     public scp_Enemy_Manager _EnemyManager;
+    [SerializeField] private GameObject huntManager;
+    [SerializeField] private GameObject attackManager;
     private Transform playerTf;
     private Transform[] waypoints;
 
     private NavMeshAgent agent;
+    private Collider capsule;
 
     private int waypointIndex;
     private Vector3 target;
 
-    [HideInInspector] public bool _Patrolling = true;
-    [HideInInspector] public bool _Hunting;
-    [HideInInspector] public bool _Resting;
-    [HideInInspector] public bool _Attacking;
-    [HideInInspector] public bool _PlayerDeadCheck = false;
+    public bool _Patrolling = true;
+    public bool _Hunting;
+    public bool _Resting;
+    public bool _Attacking;
+    public bool _Dying;
+    public bool _Dead;
+    public bool _PlayerDeadCheck = false;
 
     void Start()
     {
+        _EnemyManager = FindObjectOfType<scp_Enemy_Manager>();
         agent = GetComponent<NavMeshAgent>();
+        capsule = GetComponent<Collider>();
         playerTf = _EnemyManager._Player.transform;
         waypoints = _EnemyManager._Waypoints;
         
@@ -42,34 +49,46 @@ public class scp_Enemy_AI : MonoBehaviour
     {
         updateBehaviour();
 
-        if (_Patrolling)
+        if (!_Dying)
         {
-            bool inWaypointProx = false;
-            if (Vector3.Distance(transform.position, target) < 3) inWaypointProx = true;
-            else inWaypointProx = false;
-
-            if (inWaypointProx)
+            if (_Patrolling)
             {
-                //Debug.Log("Reached waypoint");
-                iterateWaypointIndex();
-                updateDestination();
-                StartCoroutine(waitAtWaypoint());
+                bool inWaypointProx = false;
+                if (Vector3.Distance(transform.position, target) < 3) inWaypointProx = true;
+                else inWaypointProx = false;
+
+                if (inWaypointProx)
+                {
+                    //Debug.Log("Reached waypoint");
+                    iterateWaypointIndex();
+                    updateDestination();
+                    StartCoroutine(waitAtWaypoint());
+                }
             }
-        }
 
-        if ((_Hunting || _Attacking) && !_PlayerDeadCheck)
-        {
-            setHuntTarget();
-        }
+            if ((_Hunting || _Attacking) && !_PlayerDeadCheck)
+            {
+                setHuntTarget();
+            }
 
-        if (_EnemyManager._PlayerDead && !_PlayerDeadCheck)
-        {
-            _ReturnToPatrol();
+            if (_EnemyManager._PlayerDead && !_PlayerDeadCheck)
+            {
+                _ReturnToPatrol();
+            }
         }
     }
 
     private void updateBehaviour()
     {
+        if (_Dying)
+        {
+            agent.speed = 0f;
+            capsule.enabled = false;
+            huntManager.SetActive(false); attackManager.SetActive(false);
+            _Patrolling = false; _Resting = false; _Hunting = false; _Attacking = false;
+            StartCoroutine (DestroyEnemy());
+        }
+
         if (_Patrolling)
         {
             agent.enabled = true;
@@ -99,7 +118,7 @@ public class scp_Enemy_AI : MonoBehaviour
 
     private void iterateWaypointIndex()
     {
-        int randWaypointIndex = Random.Range(0, 7);
+        int randWaypointIndex = Random.Range(0, 6);
         waypointIndex = randWaypointIndex;
     }
 
@@ -133,5 +152,11 @@ public class scp_Enemy_AI : MonoBehaviour
         else _Patrolling = true;
 
         //Debug.Log(gameObject + "knows player is dead");
+    }
+
+    private IEnumerator DestroyEnemy() 
+    { 
+        yield return new WaitForSeconds(_EnemyManager._WaitToDestroy);
+        Destroy(gameObject);
     }
 }

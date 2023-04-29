@@ -27,5 +27,7 @@ public class scp_Enemy_Animation : MonoBehaviour
         if (ai._Hunting) enemyAnim.Play("anim_skeleton_run");
 
         if (ai._Attacking) enemyAnim.Play("anim_skeleton_attack");
+
+        if (ai._Dying) enemyAnim.Play("anim_skeleton_death");
     }
 }
