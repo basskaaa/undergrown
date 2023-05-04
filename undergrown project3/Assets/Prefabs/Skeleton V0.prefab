@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iFrames: 0.1
+  KnockbackMultiplier: 2
 --- !u!54 &29692750
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2962,9 +2963,10 @@ GameObject:
   - component: {fileID: 2004005714224146373}
   - component: {fileID: 2004005714224146372}
   - component: {fileID: 2004005714224146379}
+  - component: {fileID: 2085130263}
   m_Layer: 0
   m_Name: Skeleton V0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2983,10 +2985,10 @@ Transform:
   m_Children:
   - {fileID: 2004005714012919522}
   - {fileID: 2004005714457545779}
-  - {fileID: 2004005713941683070}
   - {fileID: 29692747}
+  - {fileID: 2004005713941683070}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -187.979, z: 0}
 --- !u!95 &2004005714224146375
 Animator:
@@ -3022,7 +3024,7 @@ NavMeshAgent:
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 5000
-  m_StoppingDistance: 0
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -3060,9 +3062,10 @@ MonoBehaviour:
   WalkingSpeed: 6
   RunningSpeed: 9
   RestTime: 3
-  _EnemyManager: {fileID: 3771208727317112471, guid: 49b38c5ca1ff0e94683599c3f8b9bb1b, type: 3}
+  _EnemyManager: {fileID: 0}
   huntManager: {fileID: 2004005714012919521}
   attackManager: {fileID: 2004005714457545778}
+  swordC: {fileID: 2004005713642850692}
   _Patrolling: 1
   _Hunting: 0
   _Resting: 0
@@ -3082,6 +3085,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b5d96e017e99f47a9c5187679f9a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &2085130263
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004005714224146377}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2004005714245394098
 GameObject:
   m_ObjectHideFlags: 0

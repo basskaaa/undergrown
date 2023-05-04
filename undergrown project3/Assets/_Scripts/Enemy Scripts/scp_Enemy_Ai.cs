@@ -21,6 +21,7 @@ public class scp_Enemy_AI : MonoBehaviour
 
     private NavMeshAgent agent;
     private Collider capsule;
+    [SerializeField] private Collider swordC;
 
     private int waypointIndex;
     private Vector3 target;
@@ -84,6 +85,7 @@ public class scp_Enemy_AI : MonoBehaviour
         {
             agent.speed = 0f;
             capsule.enabled = false;
+            swordC.enabled = false;
             huntManager.SetActive(false); attackManager.SetActive(false);
             _Patrolling = false; _Resting = false; _Hunting = false; _Attacking = false;
             StartCoroutine (DestroyEnemy());

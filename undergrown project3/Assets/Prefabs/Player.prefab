@@ -2281,6 +2281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9067081497637f0448def047ebdfeed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHealth: 10
+  CurrentHealth: 0
+  IFrames: 0.2
 --- !u!54 &7836100249604401414
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2902,7 +2905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7373288657333065592, guid: 70f4d997061922f449fc46c7d34fc39e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2917,3 +2920,33 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7373288657333065590, guid: 70f4d997061922f449fc46c7d34fc39e, type: 3}
   m_PrefabInstance: {fileID: 787080310345536351}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &1405758537
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7836100248850695209}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
+--- !u!114 &1405758536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7836100248850695209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96114553f0873b843b609a983abfdf52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Multiplier: 2
+  collisionDetect: 0
