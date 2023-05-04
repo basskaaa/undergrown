@@ -30,6 +30,7 @@ public class scp_Enemy_AI : MonoBehaviour
     public bool _Hunting;
     public bool _Resting;
     public bool _Attacking;
+    public bool _Hit;
     public bool _Dying;
     public bool _Dead;
     public bool _PlayerDeadCheck = false;
@@ -91,6 +92,12 @@ public class scp_Enemy_AI : MonoBehaviour
             StartCoroutine (DestroyEnemy());
         }
 
+        if (_Hit)
+        {
+            agent.speed = IdleSpeed;
+            _Patrolling = false; _Resting = false; _Hunting = false; _Attacking = false;
+        }
+
         if (_Patrolling)
         {
             agent.enabled = true;
@@ -104,14 +111,14 @@ public class scp_Enemy_AI : MonoBehaviour
             agent.speed = IdleSpeed;
         }
 
-        if (_Hunting && !_PlayerDeadCheck)
+        if (_Hunting && !_PlayerDeadCheck && !_Hit)
         {
             agent.enabled = true;
             agent.speed = RunningSpeed;
             _Patrolling = false; _Resting = false;
         }
 
-        if (_Attacking)
+        if (_Attacking && !_Hit)
         {
             agent.speed = IdleSpeed;
             _Patrolling = false; _Resting = false; _Hunting = false;
