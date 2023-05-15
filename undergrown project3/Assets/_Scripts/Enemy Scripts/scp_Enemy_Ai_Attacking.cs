@@ -14,7 +14,7 @@ public class scp_Enemy_Ai_Attacking : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Player" && ai._Hunting && !ai._EnemyManager._PlayerManager._Dead)
+        if (collision.gameObject.tag == "Player" && ai._Hunting && !ai._Hit && !ai._EnemyManager._PlayerManager._Dead)
         {
             ai._Attacking = true;
             //Debug.Log("Hunt range entered");
@@ -23,7 +23,7 @@ public class scp_Enemy_Ai_Attacking : MonoBehaviour
 
     private void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.tag == "Player" && !ai._EnemyManager._PlayerManager._Dead)
+        if (collision.gameObject.tag == "Player" && !ai._EnemyManager._PlayerManager._Dead && !ai._Hit)
         {
             ai._Attacking = true;
             //Debug.Log("Hunt range entered");

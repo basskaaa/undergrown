@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scp_Enemy_Hit : MonoBehaviour
+public class scp_Enemy_AI_Hit : MonoBehaviour
 {
     [SerializeField] private float iFrames = .3f;
     [SerializeField] private int MaxHealth = 2;
@@ -41,11 +41,14 @@ public class scp_Enemy_Hit : MonoBehaviour
     private IEnumerator Hit()
     {
         hitCheck = true;
-        CurrentHealth--;
+        ai._Attacking = false;
+        ai._Hunting = false;
         ai._Hit = true;
-        yield return new WaitForSeconds(iFrames);
 
+        yield return new WaitForSeconds(iFrames);
         hitCheck = false;
+        CurrentHealth--;
         ai._Hit = false;
+        if (!ai._Dying) ai._Hunting = true;
     }
 }
