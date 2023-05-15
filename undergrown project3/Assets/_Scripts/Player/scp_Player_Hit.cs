@@ -7,6 +7,8 @@ public class scp_Player_Hit : MonoBehaviour
     private scp_Player_Manager_Holder h;
     private scp_Player_Manager playerManager;
     private scp_Enemy_AI enemyAI;
+    [SerializeField] GameObject hitPlayerParticles;
+    private Vector3 particleSpawnTf;
 
     [SerializeField] private int MaxHealth = 10;
     [SerializeField] private int CurrentHealth;
@@ -41,6 +43,10 @@ public class scp_Player_Hit : MonoBehaviour
             {
                 StartCoroutine (waitForIFrames());
             }
+
+            particleSpawnTf = collision.transform.position;
+            GameObject clone = (GameObject)Instantiate(hitPlayerParticles, particleSpawnTf, Quaternion.identity);
+            Destroy(clone, 1.0f);
         }
     }    
 
@@ -49,9 +55,10 @@ public class scp_Player_Hit : MonoBehaviour
         CurrentHealth--;
         Debug.Log("Health: " + CurrentHealth);
         invincible = true;
+        playerManager._Hit = true;
 
         yield return new WaitForSeconds(IFrames);
-
+        playerManager._Hit = false;
         invincible = false;
     }
 }

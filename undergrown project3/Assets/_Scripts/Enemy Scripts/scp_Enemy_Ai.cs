@@ -84,12 +84,14 @@ public class scp_Enemy_AI : MonoBehaviour
     {
         if (_Dying)
         {
+            if (!_Dead) Debug.Log(gameObject.name + " died");
             agent.speed = 0f;
             capsule.enabled = false;
             swordC.enabled = false;
+            _Dead = true;
             huntManager.SetActive(false); attackManager.SetActive(false);
             _Patrolling = false; _Resting = false; _Hunting = false; _Attacking = false;
-            StartCoroutine (DestroyEnemy());
+            Destroy(gameObject, 30.0f);
         }
 
         if (_Hit)
@@ -159,13 +161,5 @@ public class scp_Enemy_AI : MonoBehaviour
         _Attacking = false;
         if (_Resting) return;
         else _Patrolling = true;
-
-        //Debug.Log(gameObject + "knows player is dead");
-    }
-
-    private IEnumerator DestroyEnemy() 
-    { 
-        yield return new WaitForSeconds(_EnemyManager._WaitToDestroy);
-        Destroy(gameObject);
     }
 }

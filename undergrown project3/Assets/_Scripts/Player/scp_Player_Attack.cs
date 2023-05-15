@@ -8,7 +8,6 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class scp_Player_Attack : MonoBehaviour
 {
     [SerializeField] private GameObject Sword;
-    [SerializeField] private ParticleSystem SwordParticles;
     private Collider swordCollider;
 
     private scp_Player_Manager_Holder h;
@@ -22,7 +21,6 @@ public class scp_Player_Attack : MonoBehaviour
         h = GetComponent<scp_Player_Manager_Holder>();
         playerManager = h._Manager;
         swordCollider = Sword.GetComponent<Collider>();
-        //swordCollider.enabled = false;
         isDead = playerManager._Dead;
     }
 
@@ -38,8 +36,6 @@ public class scp_Player_Attack : MonoBehaviour
             playerManager._AttackMove();
             StartCoroutine(Attack());
         }
-
-        //else swordCollider.enabled = false;
     }
 
     private IEnumerator Attack()
@@ -48,7 +44,6 @@ public class scp_Player_Attack : MonoBehaviour
         swordCollider.enabled = true;
 
         yield return new WaitForSeconds(attackCooldown);
-        SwordParticles.Stop();
         playerManager._Attacking = false;
         attackReady = true;
     }

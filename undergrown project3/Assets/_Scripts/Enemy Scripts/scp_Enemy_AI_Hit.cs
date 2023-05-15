@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class scp_Enemy_AI_Hit : MonoBehaviour
@@ -25,7 +26,6 @@ public class scp_Enemy_AI_Hit : MonoBehaviour
         if (CurrentHealth <= 0 && !ai._Dying)
         {
             ai._Dying = true;
-            Debug.Log("You died");
         }
     }
 
@@ -33,7 +33,6 @@ public class scp_Enemy_AI_Hit : MonoBehaviour
     {
         if (other.gameObject.tag == ("pWeapon") && playerAttacking && !hitCheck && !ai._Dying)
         {
-            Debug.Log("hit by sword");
             StartCoroutine(Hit());
         }
     }

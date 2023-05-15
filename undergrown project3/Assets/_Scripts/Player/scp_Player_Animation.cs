@@ -18,8 +18,10 @@ public class scp_Player_Animation : MonoBehaviour
     private void FixedUpdate()
     {
         if (playerManager._Dead) _PlayerAnim.Play("anim_player_death");
-
         if (playerManager._Attacking) _PlayerAnim.SetBool("Attack", true);
-        else _PlayerAnim.SetBool("Attack", false);
+        if (playerManager._Hit) _PlayerAnim.SetBool("Hit", true);
+
+        if (!playerManager._Attacking) _PlayerAnim.SetBool("Attack", false);
+        if (!playerManager._Hit) _PlayerAnim.SetBool("Hit", false);
     }
 }

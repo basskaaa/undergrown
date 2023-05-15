@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5412534693608701050}
   m_Layer: 8
   m_Name: Skeleton V1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,7 +117,7 @@ Transform:
   - {fileID: 5412534695607406292}
   - {fileID: 1869975949}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -187.979, z: 0}
 --- !u!95 &5412534693608701046
 Animator:
@@ -316,6 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5412534695229573659}
   - component: {fileID: 5412534695229573658}
+  - component: {fileID: 9054690577961147505}
   m_Layer: 0
   m_Name: SwordCollider
   m_TagString: eWeapon
@@ -351,6 +352,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17, y: 0.07, z: 1.25}
   m_Center: {x: 0, y: 0.06, z: 0.42}
+--- !u!114 &9054690577961147505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5412534695229573660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf4954e48b73fb40b0b5c4aada9e223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPlayerParticles: {fileID: 1352832643152127057, guid: 22a907ae7e7216341a5894cc2b3c152e, type: 3}
 --- !u!1 &5412534695607406293
 GameObject:
   m_ObjectHideFlags: 0

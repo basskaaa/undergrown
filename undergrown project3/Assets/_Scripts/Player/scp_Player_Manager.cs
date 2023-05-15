@@ -7,6 +7,7 @@ public class scp_Player_Manager : MonoBehaviour
     public bool _Dead = false;
     private bool deadCheck = false;
     public bool _Attacking = false;
+    public bool _Hit = false;
     public bool _Jump = false;
     [SerializeField] private bool canMoveCheck = true;
     [SerializeField] private GameObject uiDeath;
