@@ -3,6 +3,7 @@ using UnityEngine;
 public class scp_Enemy_Manager : MonoBehaviour
 {
     public GameObject _Player;
+    public GameObject _KnockbackTf;
     public scp_Player_Manager _PlayerManager;
     public bool _PlayerDead;
     public bool _PlayerAttacking;

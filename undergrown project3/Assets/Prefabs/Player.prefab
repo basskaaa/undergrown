@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &778234212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 778234213}
+  m_Layer: 0
+  m_Name: knockbackTf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &778234213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778234212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.95, y: 1.21, z: 7.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 630928595863072774}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &86230256716840884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,6 +1830,7 @@ Transform:
   - {fileID: 8302913664629801326}
   - {fileID: 7836100249604401417}
   - {fileID: 7836100248999947671}
+  - {fileID: 778234213}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2281,6 +2313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9067081497637f0448def047ebdfeed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPlayerParticles: {fileID: 1352832643152127057, guid: 22a907ae7e7216341a5894cc2b3c152e, type: 3}
   MaxHealth: 10
   CurrentHealth: 0
   IFrames: 0.2
@@ -2949,4 +2982,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Multiplier: 2
+  SwordParticles: {fileID: 1352832643152127057, guid: d3bfb1814522d6d4a89d3d34162384bd, type: 3}
   collisionDetect: 0

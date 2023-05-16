@@ -61,8 +61,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iFrames: 0.3
-  MaxHealth: 2
-  CurrentHealth: 0
+  MaxHealth: 5
+  playerTf: {fileID: 0}
+  _CurrentHealth: 0
 --- !u!54 &1869975952
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -153,7 +154,7 @@ NavMeshAgent:
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 5000
-  m_StoppingDistance: 2
+  m_StoppingDistance: 2.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -187,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68152a934edc80449a673078dad9e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
   IdleSpeed: 1
   WalkingSpeed: 6
   RunningSpeed: 9
@@ -202,6 +204,7 @@ MonoBehaviour:
   _Hit: 0
   _Dying: 0
   _Dead: 0
+  _BackUp: 0
   _PlayerDeadCheck: 0
 --- !u!114 &5412534693608701050
 MonoBehaviour:
@@ -365,6 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPlayerParticles: {fileID: 1352832643152127057, guid: 22a907ae7e7216341a5894cc2b3c152e, type: 3}
+  _HitPlayer: 0
 --- !u!1 &5412534695607406293
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 595be3671113ec54ebb4fc7e1ef2523a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTime: 0.3
+  attackTime: 1
+  updateAttack: 0
 --- !u!1001 &5412534694764902808
 PrefabInstance:
   m_ObjectHideFlags: 0

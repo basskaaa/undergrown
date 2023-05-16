@@ -62,7 +62,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iFrames: 0.3
   MaxHealth: 2
-  CurrentHealth: 0
+  playerTf: {fileID: 0}
+  _CurrentHealth: 0
 --- !u!54 &29692750
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3058,6 +3059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68152a934edc80449a673078dad9e7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
   IdleSpeed: 1
   WalkingSpeed: 6
   RunningSpeed: 9
@@ -3073,6 +3075,7 @@ MonoBehaviour:
   _Hit: 0
   _Dying: 0
   _Dead: 0
+  _BackUp: 0
   _PlayerDeadCheck: 0
 --- !u!114 &2004005714224146379
 MonoBehaviour:
@@ -3496,6 +3499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackTime: 0.3
+  updateAttack: 0
 --- !u!1 &2004005714543855524
 GameObject:
   m_ObjectHideFlags: 0

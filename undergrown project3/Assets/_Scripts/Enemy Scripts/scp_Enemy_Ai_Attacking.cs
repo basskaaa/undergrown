@@ -7,6 +7,7 @@ public class scp_Enemy_Ai_Attacking : MonoBehaviour
 
     [SerializeField] private float attackTime = .5f;
     private bool inAttack;
+    [SerializeField] private bool updateAttack;
 
     void Start()
     {
@@ -50,6 +51,8 @@ public class scp_Enemy_Ai_Attacking : MonoBehaviour
 
         yield return new WaitForSeconds(attackTime);
         ai._Attacking = false;
+        ai._Hunting = true;
         inAttack = false;
+        yield return new WaitForSeconds(0.2f);
     }
 }

@@ -18,6 +18,7 @@ public class scp_Enemy_AI : MonoBehaviour
     [SerializeField] private GameObject huntManager;
     [SerializeField] private GameObject attackManager;
     private scp_Enemy_AI_Hit hitManager;
+    private scp_Enemy_Sword swordManager;
     private Transform playerTf;
     private Transform myTf;
     private Transform[] waypoints;
@@ -37,6 +38,7 @@ public class scp_Enemy_AI : MonoBehaviour
     public bool _Hit;
     public bool _Dying;
     public bool _Dead;
+    public bool _BackUp;
     public bool _PlayerDeadCheck = false;
 
     void Start()
@@ -46,6 +48,7 @@ public class scp_Enemy_AI : MonoBehaviour
         capsule = GetComponent<Collider>();
         myTf = GetComponent<Transform>();
         hitManager = GetComponentInChildren<scp_Enemy_AI_Hit>();
+        swordManager = GetComponentInChildren<scp_Enemy_Sword>();
         playerTf = _EnemyManager._Player.transform;
         waypoints = _EnemyManager._Waypoints;
         
@@ -53,10 +56,8 @@ public class scp_Enemy_AI : MonoBehaviour
         updateBehaviour();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        transform.position = hitManager.transform.position;
-
         Health = hitManager._CurrentHealth;
 
         updateBehaviour();
@@ -83,9 +84,10 @@ public class scp_Enemy_AI : MonoBehaviour
                 setHuntTarget();
             }
 
-            if (_EnemyManager._PlayerDead && !_PlayerDeadCheck)
+            if (_EnemyManager._PlayerDead)
             {
-                _ReturnToPatrol();
+                _Hunting = false;
+                if (!_PlayerDeadCheck) _ReturnToPatrol();
             }
         }
     }
@@ -106,9 +108,9 @@ public class scp_Enemy_AI : MonoBehaviour
 
         if (_Hit)
         {
-            //agent.speed = IdleSpeed;
+            agent.enabled = false;
+            transform.position = hitManager.transform.position;
             _Patrolling = false; _Resting = false; _Hunting = false; _Attacking = false;
-            agent.velocity = target * 8;
         }
 
         if (_Patrolling)

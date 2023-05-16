@@ -1137,6 +1137,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e593111c912431d4ca24bdd4606a4480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &778234212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 778234212, guid: 9479e741c71220e45af0158f5a533618, type: 3}
+  m_PrefabInstance: {fileID: 7836100249644002207}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &830600531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5412534693608701051, guid: 6d6477d54c09db846a6b3e0a84b227b5, type: 3}
@@ -3876,6 +3881,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1236837790}
     m_Modifications:
+    - target: {fileID: 29692748, guid: 66b891bcb01734a4da63da67681814b7, type: 3}
+      propertyPath: playerTf
+      value: 
+      objectReference: {fileID: 778234212}
     - target: {fileID: 2004005714224146372, guid: 66b891bcb01734a4da63da67681814b7, type: 3}
       propertyPath: _EnemyManager
       value: 
@@ -3883,10 +3892,6 @@ PrefabInstance:
     - target: {fileID: 2004005714224146377, guid: 66b891bcb01734a4da63da67681814b7, type: 3}
       propertyPath: m_Name
       value: Skeleton V0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2004005714224146377, guid: 66b891bcb01734a4da63da67681814b7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2004005714224146378, guid: 66b891bcb01734a4da63da67681814b7, type: 3}
       propertyPath: m_RootOrder
@@ -4168,6 +4173,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1904121967}
     - target: {fileID: 3771208727317112471, guid: 49b38c5ca1ff0e94683599c3f8b9bb1b, type: 3}
+      propertyPath: _KnockbackTf
+      value: 
+      objectReference: {fileID: 778234212}
+    - target: {fileID: 3771208727317112471, guid: 49b38c5ca1ff0e94683599c3f8b9bb1b, type: 3}
       propertyPath: _PlayerManager
       value: 
       objectReference: {fileID: 1877744791}
@@ -4211,10 +4220,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1236837790}
     m_Modifications:
-    - target: {fileID: 5412534693608701047, guid: 6d6477d54c09db846a6b3e0a84b227b5, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 1869975950, guid: 6d6477d54c09db846a6b3e0a84b227b5, type: 3}
+      propertyPath: playerTf
+      value: 
+      objectReference: {fileID: 778234212}
     - target: {fileID: 5412534693608701049, guid: 6d6477d54c09db846a6b3e0a84b227b5, type: 3}
       propertyPath: _EnemyManager
       value: 
@@ -4267,10 +4276,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton V1
       objectReference: {fileID: 0}
-    - target: {fileID: 5412534693608701052, guid: 6d6477d54c09db846a6b3e0a84b227b5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d6477d54c09db846a6b3e0a84b227b5, type: 3}
@@ -4282,6 +4287,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 6479613}
     m_Modifications:
+    - target: {fileID: 778234213, guid: 9479e741c71220e45af0158f5a533618, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.56
+      objectReference: {fileID: 0}
     - target: {fileID: 1405758536, guid: 9479e741c71220e45af0158f5a533618, type: 3}
       propertyPath: SwordParticles
       value: 
@@ -4331,36 +4340,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3928287203193205594, guid: 9479e741c71220e45af0158f5a533618, type: 3}
-      propertyPath: SwordParticles
-      value: 
+      propertyPath: attackCooldown
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3928287203193205595, guid: 9479e741c71220e45af0158f5a533618, type: 3}
       propertyPath: _Manager
       value: 
       objectReference: {fileID: 1877744791}
-    - target: {fileID: 5868383148778848892, guid: 9479e741c71220e45af0158f5a533618, type: 3}
-      propertyPath: JumpTimeout
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5868383148778848892, guid: 9479e741c71220e45af0158f5a533618, type: 3}
-      propertyPath: GroundedOffset
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 7323019180116261658, guid: 9479e741c71220e45af0158f5a533618, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7323019180116261658, guid: 9479e741c71220e45af0158f5a533618, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7836100248850695209, guid: 9479e741c71220e45af0158f5a533618, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7836100248999947672, guid: 9479e741c71220e45af0158f5a533618, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7836100249604401416, guid: 9479e741c71220e45af0158f5a533618, type: 3}
       propertyPath: hitPlayerParticles
