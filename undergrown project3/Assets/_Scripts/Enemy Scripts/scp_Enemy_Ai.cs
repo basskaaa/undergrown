@@ -7,6 +7,7 @@ public class scp_Enemy_AI : MonoBehaviour
     [Header("Enemy Settings")]
 
     [SerializeField] private int Health;
+    [SerializeField] private int MaxHealth;
     [SerializeField] private float IdleSpeed = 1f;
     [SerializeField] private float WalkingSpeed = 6f;
     [SerializeField] private float RunningSpeed = 9f;
@@ -22,6 +23,7 @@ public class scp_Enemy_AI : MonoBehaviour
     private Transform playerTf;
     private Transform myTf;
     private Transform[] waypoints;
+    private Light healthLight;
 
 
     private NavMeshAgent agent;
@@ -43,12 +45,14 @@ public class scp_Enemy_AI : MonoBehaviour
 
     void Start()
     {
+        //hitManager._MaxHealth = MaxHealth;
         _EnemyManager = FindObjectOfType<scp_Enemy_Manager>();
         agent = GetComponent<NavMeshAgent>();
         capsule = GetComponent<Collider>();
         myTf = GetComponent<Transform>();
         hitManager = GetComponentInChildren<scp_Enemy_AI_Hit>();
         swordManager = GetComponentInChildren<scp_Enemy_Sword>();
+        healthLight = GetComponentInChildren<Light>();
         playerTf = _EnemyManager._Player.transform;
         waypoints = _EnemyManager._Waypoints;
         
@@ -59,6 +63,7 @@ public class scp_Enemy_AI : MonoBehaviour
     void FixedUpdate()
     {
         Health = hitManager._CurrentHealth;
+        MaxHealth = hitManager._MaxHealth;
 
         updateBehaviour();
 
@@ -109,6 +114,7 @@ public class scp_Enemy_AI : MonoBehaviour
         if (_Hit)
         {
             agent.enabled = false;
+            StartCoroutine(healthLightWait());
             transform.position = hitManager.transform.position;
             _Patrolling = false; _Resting = false; _Hunting = false; _Attacking = false;
         }
@@ -174,5 +180,15 @@ public class scp_Enemy_AI : MonoBehaviour
         _Attacking = false;
         if (_Resting) return;
         else _Patrolling = true;
+    }
+
+    private IEnumerator healthLightWait()
+    {
+        if (Health <= (MaxHealth / 2))
+        {
+            float newIntensity = healthLight.intensity * 0.1f;
+            yield return new WaitForSeconds(1.5f);
+            healthLight.intensity = newIntensity;
+        }
     }
 }

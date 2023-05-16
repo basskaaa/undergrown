@@ -12,6 +12,11 @@ public class scp_Player_Manager : MonoBehaviour
     [SerializeField] private bool canMoveCheck = true;
     [SerializeField] private GameObject uiDeath;
 
+    [SerializeField] private float move = 20f;
+    [SerializeField] private float run = 40f;
+    [SerializeField] private float speedChangeRate = 10f;
+    [SerializeField] private float jumpHeight = 3f;
+
     public GameObject _Player;
 
     [HideInInspector] public ThirdPersonController _ThirdPersonController;
@@ -35,9 +40,6 @@ public class scp_Player_Manager : MonoBehaviour
 
     private void death()
     {     
-        //_ThirdPersonController.MoveSpeed = 0f;
-        //_ThirdPersonController.SprintSpeed = 0f;
-        //_ThirdPersonController.JumpHeight = 0f;
         _ThirdPersonController.enabled = false;
         uiDeath.SetActive(true);
         deadCheck = true;
@@ -45,10 +47,10 @@ public class scp_Player_Manager : MonoBehaviour
 
     private void canMove()
     {
-        _ThirdPersonController.MoveSpeed = 2f;
-        _ThirdPersonController.SprintSpeed = 10f;
-        _ThirdPersonController.SpeedChangeRate = 10f;
-        _ThirdPersonController.JumpHeight = 1.2f;
+        _ThirdPersonController.MoveSpeed = move;
+        _ThirdPersonController.SprintSpeed = run;
+        _ThirdPersonController.SpeedChangeRate = speedChangeRate;
+        _ThirdPersonController.JumpHeight = jumpHeight;
     }
 
     public void _AttackMove()
@@ -56,6 +58,6 @@ public class scp_Player_Manager : MonoBehaviour
         _ThirdPersonController.MoveSpeed = 0f;
         _ThirdPersonController.SprintSpeed = 0f;
         _ThirdPersonController.SpeedChangeRate = 20f;
-        _ThirdPersonController.JumpHeight = 1.2f;
+        _ThirdPersonController.JumpHeight = 3f;
     }
 }
