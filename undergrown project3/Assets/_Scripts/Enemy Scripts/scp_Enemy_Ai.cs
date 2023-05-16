@@ -6,6 +6,7 @@ public class scp_Enemy_AI : MonoBehaviour
 {
     [Header("Enemy Settings")]
 
+    [SerializeField] private int Health;
     [SerializeField] private float IdleSpeed = 1f;
     [SerializeField] private float WalkingSpeed = 6f;
     [SerializeField] private float RunningSpeed = 9f;
@@ -16,8 +17,11 @@ public class scp_Enemy_AI : MonoBehaviour
     public scp_Enemy_Manager _EnemyManager;
     [SerializeField] private GameObject huntManager;
     [SerializeField] private GameObject attackManager;
+    private scp_Enemy_AI_Hit hitManager;
     private Transform playerTf;
+    private Transform myTf;
     private Transform[] waypoints;
+
 
     private NavMeshAgent agent;
     private Collider capsule;
@@ -40,6 +44,8 @@ public class scp_Enemy_AI : MonoBehaviour
         _EnemyManager = FindObjectOfType<scp_Enemy_Manager>();
         agent = GetComponent<NavMeshAgent>();
         capsule = GetComponent<Collider>();
+        myTf = GetComponent<Transform>();
+        hitManager = GetComponentInChildren<scp_Enemy_AI_Hit>();
         playerTf = _EnemyManager._Player.transform;
         waypoints = _EnemyManager._Waypoints;
         
@@ -49,6 +55,10 @@ public class scp_Enemy_AI : MonoBehaviour
 
     void Update()
     {
+        transform.position = hitManager.transform.position;
+
+        Health = hitManager._CurrentHealth;
+
         updateBehaviour();
 
         if (!_Dying)
@@ -96,8 +106,9 @@ public class scp_Enemy_AI : MonoBehaviour
 
         if (_Hit)
         {
-            agent.speed = IdleSpeed;
+            //agent.speed = IdleSpeed;
             _Patrolling = false; _Resting = false; _Hunting = false; _Attacking = false;
+            agent.velocity = target * 8;
         }
 
         if (_Patrolling)

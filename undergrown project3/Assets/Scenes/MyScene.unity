@@ -3884,6 +3884,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton V0
       objectReference: {fileID: 0}
+    - target: {fileID: 2004005714224146377, guid: 66b891bcb01734a4da63da67681814b7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2004005714224146378, guid: 66b891bcb01734a4da63da67681814b7, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4207,6 +4211,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1236837790}
     m_Modifications:
+    - target: {fileID: 5412534693608701047, guid: 6d6477d54c09db846a6b3e0a84b227b5, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5412534693608701049, guid: 6d6477d54c09db846a6b3e0a84b227b5, type: 3}
       propertyPath: _EnemyManager
       value: 
