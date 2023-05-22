@@ -16,6 +16,7 @@ public class scp_Enemy_AI : MonoBehaviour
     [Header("References")]
 
     public scp_Enemy_Manager _EnemyManager;
+    public scp_MusicManager _MusicManager;
     [SerializeField] private GameObject huntManager;
     [SerializeField] private GameObject attackManager;
     private scp_Enemy_AI_Hit hitManager;
@@ -47,6 +48,7 @@ public class scp_Enemy_AI : MonoBehaviour
     {
         //hitManager._MaxHealth = MaxHealth;
         _EnemyManager = FindObjectOfType<scp_Enemy_Manager>();
+        _MusicManager = FindObjectOfType<scp_MusicManager>();
         agent = GetComponent<NavMeshAgent>();
         capsule = GetComponent<Collider>();
         myTf = GetComponent<Transform>();
@@ -88,6 +90,8 @@ public class scp_Enemy_AI : MonoBehaviour
             {
                 setHuntTarget();
             }
+
+            if (!(_Hunting || _Attacking)) _MusicManager.hunted = false;
 
             if (_EnemyManager._PlayerDead)
             {

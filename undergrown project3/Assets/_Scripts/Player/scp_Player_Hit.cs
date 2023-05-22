@@ -7,11 +7,12 @@ public class scp_Player_Hit : MonoBehaviour
     private scp_Player_Manager_Holder h;
     private scp_Player_Manager playerManager;
     private scp_Enemy_AI enemyAI;
-    [SerializeField] GameObject hitPlayerParticles;
+    [SerializeField] public GameObject hitPlayerParticles;
     private Vector3 particleSpawnTf;
 
-    [SerializeField] private int MaxHealth = 10;
-    [SerializeField] private int CurrentHealth;
+    public HealthBar _HealthBar;
+    public int _MaxHealth = 10;
+    public int _CurrentHealth;
     [SerializeField] private float IFrames = 0.3f;
 
     private bool invincible;
@@ -21,12 +22,13 @@ public class scp_Player_Hit : MonoBehaviour
         h = GetComponentInParent<scp_Player_Manager_Holder>();
         playerManager = h._Manager;
 
-        CurrentHealth = MaxHealth;
+        _CurrentHealth = _MaxHealth;
+        _HealthBar.SetMaxHealth(_MaxHealth);
     }
 
     private void Update()
     {
-        if (CurrentHealth == 0 && !playerManager._Dead) 
+        if (_CurrentHealth == 0 && !playerManager._Dead) 
         {
             playerManager._Dead = true;
             Debug.Log("You died");
@@ -52,8 +54,9 @@ public class scp_Player_Hit : MonoBehaviour
 
     private IEnumerator waitForIFrames()
     {
-        CurrentHealth--;
-        Debug.Log("Health: " + CurrentHealth);
+        _CurrentHealth--;
+        _HealthBar.SetHealth(_CurrentHealth);
+        Debug.Log("Health: " + _CurrentHealth);
         invincible = true;
         playerManager._Hit = true;
 
