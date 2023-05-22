@@ -24,6 +24,7 @@ public class scp_PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        settingsMenu.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
         Cursor.lockState = true ? CursorLockMode.Locked : CursorLockMode.None;

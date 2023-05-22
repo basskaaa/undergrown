@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iFrames: 0.3
-  _MaxHealth: 2
+  _MaxHealth: 3
   _CurrentHealth: 0
 --- !u!54 &1869975952
 Rigidbody:
@@ -211,7 +211,7 @@ Transform:
   - {fileID: 5412534695607406292}
   - {fileID: 1869975949}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -187.979, z: 0}
 --- !u!95 &5412534693608701046
 Animator:
@@ -288,6 +288,7 @@ MonoBehaviour:
   RunningSpeed: 9
   RestTime: 3
   _EnemyManager: {fileID: 0}
+  _MusicManager: {fileID: 0}
   huntManager: {fileID: 5412534694173032473}
   attackManager: {fileID: 5412534695607406293}
   swordC: {fileID: 5412534695229573658}
@@ -521,7 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 595be3671113ec54ebb4fc7e1ef2523a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTime: 1
+  attackTime: 0.8
   updateAttack: 0
 --- !u!1001 &5412534694764902808
 PrefabInstance:

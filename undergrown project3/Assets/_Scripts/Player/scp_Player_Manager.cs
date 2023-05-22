@@ -11,6 +11,7 @@ public class scp_Player_Manager : MonoBehaviour
     public bool _Jump = false;
     [SerializeField] private bool canMoveCheck = true;
     [SerializeField] private GameObject uiDeath;
+    [SerializeField] private GameObject swordSeed;
     [SerializeField] private Light healthLight;
 
     [SerializeField] private float move = 20f;
@@ -54,6 +55,7 @@ public class scp_Player_Manager : MonoBehaviour
         _ThirdPersonController.enabled = false;
         uiDeath.SetActive(true);
         deadCheck = true;
+        Cursor.lockState = false ? CursorLockMode.None : CursorLockMode.None;
     }
 
     private void canMove()
