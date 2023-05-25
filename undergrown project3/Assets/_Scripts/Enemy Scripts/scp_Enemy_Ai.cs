@@ -210,6 +210,7 @@ public class scp_Enemy_AI : MonoBehaviour
             _Hunting = false; _Attacking = false; _Dying = false; _Dead = false; _EnemyManager._PlayerDead = false; _PlayerDeadCheck = false;
             huntManager.SetActive(true); attackManager.SetActive(true);
             capsule.enabled = true; swordC.enabled = true; agent.enabled = true; healthLight.intensity = 10f;
+            attackManager.GetComponent<scp_Enemy_Ai_Attacking>().inAttack = false;
             waitAtWaypoint();
         }
     }

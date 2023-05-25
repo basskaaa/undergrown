@@ -25,11 +25,6 @@ public class scp_SwordFlower : MonoBehaviour
             attackScript.CollectFlower();
             Destroy(gameObject);
         }
-
-        if (flower)
-        {
-            SetFlower();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,5 +48,7 @@ public class scp_SwordFlower : MonoBehaviour
     {
         flowerObj.SetActive(true);
         seedObj.SetActive(false );
+        flower = true;
+        Debug.Log(gameObject.name + " set to flower");
     }
 }

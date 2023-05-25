@@ -25,6 +25,11 @@ public class scp_Respawn : MonoBehaviour
         Enemy = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
+    private void Update()
+    {
+        SwordFlower = GameObject.FindGameObjectsWithTag("swordFlower");
+    }
+
     public void Respawn()
     {
         RespawnPlayer();
@@ -53,18 +58,20 @@ public class scp_Respawn : MonoBehaviour
         playerManager.PlayerRespawn();
     }
 
+
     public void SetFlowers()
     {
         SwordFlower = GameObject.FindGameObjectsWithTag("swordFlower");
         int flowerCount = SwordFlower.Length;
         flowerScript = new scp_SwordFlower[flowerCount];
+        Debug.Log(flowerCount);
 
         for (int i = 0;i < flowerCount; i++)
         {
             flowerScript[i] = SwordFlower[i].GetComponent<scp_SwordFlower>();
             if (flowerScript[i] == null) Debug.Log("no flower script" + flowerScript[i]);
-            flowerScript[i].flower = true;
             flowerScript[i].SetFlower();
+            flowerScript[i].flower = true;
             SwordFlower[i].transform.rotation = new Quaternion (0,0,0,0);
         }
     }

@@ -6,7 +6,7 @@ public class scp_Enemy_Ai_Attacking : MonoBehaviour
     private scp_Enemy_AI ai;
 
     [SerializeField] private float attackTime = .5f;
-    private bool inAttack;
+    public bool inAttack;
     [SerializeField] private bool updateAttack;
 
     void Start()
