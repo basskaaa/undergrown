@@ -16,6 +16,8 @@ public class scp_Respawn : MonoBehaviour
     private scp_Enemy_AI[] enemyAi;
     private scp_SwordFlower[] flowerScript;
 
+    public bool respawnCheck;
+
     private void Start()
     {
         playerSpawnTf = Player.transform;
@@ -39,14 +41,11 @@ public class scp_Respawn : MonoBehaviour
 
     public void RespawnEnemies()
     {
-        int enemyCount = Enemy.Length;
-        enemyAi = new scp_Enemy_AI[enemyCount];
+        var enemyAis = FindObjectsOfType<scp_Enemy_AI>();
 
-        for (int i = 0; i < enemyCount; i++) 
+        foreach (var enemyAi in enemyAis)
         {
-            enemyAi[i] = Enemy[i].GetComponent<scp_Enemy_AI> ();
-            if (enemyAi[i] == null) Debug.Log("no enemy script" + enemyAi[i]);
-            enemyAi[i].EnemyRespawn();
+            enemyAi.EnemyRespawn();
         }
     }
 
@@ -58,21 +57,15 @@ public class scp_Respawn : MonoBehaviour
         playerManager.PlayerRespawn();
     }
 
-
     public void SetFlowers()
     {
-        SwordFlower = GameObject.FindGameObjectsWithTag("swordFlower");
-        int flowerCount = SwordFlower.Length;
-        flowerScript = new scp_SwordFlower[flowerCount];
-        Debug.Log(flowerCount);
+        // FindObjectsOfType gets you the components directly so you don't need to lookup by tag
+        // It is too slow to use every frame but doing a 1 off for a respawn or something is perfectly valid
+        var swordFlowers = FindObjectsOfType<scp_SwordFlower>();
 
-        for (int i = 0;i < flowerCount; i++)
+        foreach (var swordFlower in swordFlowers)
         {
-            flowerScript[i] = SwordFlower[i].GetComponent<scp_SwordFlower>();
-            if (flowerScript[i] == null) Debug.Log("no flower script" + flowerScript[i]);
-            flowerScript[i].SetFlower();
-            flowerScript[i].flower = true;
-            SwordFlower[i].transform.rotation = new Quaternion (0,0,0,0);
+            swordFlower.SetFlower();
         }
     }
 

@@ -7,18 +7,27 @@ using UnityEngine.InputSystem;
 public class scp_PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    public bool InSettings = false;
 
     public GameObject pauseMenuUI;
     [SerializeField] private GameObject settingsMenu;
+    private scp_Player_Manager player;
 
+
+    private void Start()
+    {
+        player = FindObjectOfType<scp_Player_Manager>();
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !player._Dead && !InSettings)
         {
             if (GameIsPaused) Resume();
             else Pause();
         }
+
+        if (GameIsPaused) Cursor.lockState = false ? CursorLockMode.None : CursorLockMode.None;
     }
 
     public void Resume()
@@ -46,6 +55,7 @@ public class scp_PauseMenu : MonoBehaviour
 
     public void Settings()
     {
+        InSettings = true;
         settingsMenu.SetActive(true);
         pauseMenuUI.SetActive(false);
     }

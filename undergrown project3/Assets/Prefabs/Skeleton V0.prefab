@@ -3161,6 +3161,7 @@ MonoBehaviour:
   RestTime: 3
   _EnemyManager: {fileID: 0}
   _MusicManager: {fileID: 0}
+  respawnManager: {fileID: 0}
   huntManager: {fileID: 2004005714012919521}
   attackManager: {fileID: 2004005714457545778}
   Mesh: {fileID: 2004005713941683069}
@@ -3174,6 +3175,7 @@ MonoBehaviour:
   _Dead: 0
   _BackUp: 0
   _PlayerDeadCheck: 0
+  _RespawnCheck: 0
 --- !u!114 &2004005714224146379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3596,6 +3598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackTime: 1
+  inAttack: 0
   updateAttack: 0
 --- !u!1 &2004005714543855524
 GameObject:

@@ -49,6 +49,7 @@ public class scp_SwordFlower : MonoBehaviour
         flowerObj.SetActive(true);
         seedObj.SetActive(false );
         flower = true;
+        transform.rotation = new Quaternion(0, 0, 0, 0);
         Debug.Log(gameObject.name + " set to flower");
     }
 }

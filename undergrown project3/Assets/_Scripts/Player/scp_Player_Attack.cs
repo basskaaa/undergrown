@@ -31,8 +31,8 @@ public class scp_Player_Attack : MonoBehaviour
         isDead = playerManager._Dead;
 
         //test
-        attackAmmo = 10;
-        attackAmmoCount.text = attackAmmo.ToString();
+        attackAmmo = 11;
+        attackAmmoCount.text = (attackAmmo - 1).ToString();
     }
 
     void Update()
@@ -50,14 +50,14 @@ public class scp_Player_Attack : MonoBehaviour
             StartCoroutine(Attack());
         }
 
-        if (attackAmmo==0)
+        if ((attackAmmo)==0)
         {
             Sword.SetActive(false);
             swordIcon.color = new Color(swordIcon.color.r, swordIcon.color.g, swordIcon.color.b, 0.3f);
             attackAmmoCount.color = new Color(attackAmmoCount.color.r, attackAmmoCount.color.g, attackAmmoCount.color.b, 0.3f);
         }
 
-        if (attackAmmo>0)
+        if ((attackAmmo)>0)
         {
             Sword.SetActive(true);
             swordIcon.color = new Color(swordIcon.color.r, swordIcon.color.g, swordIcon.color.b, 1f);
