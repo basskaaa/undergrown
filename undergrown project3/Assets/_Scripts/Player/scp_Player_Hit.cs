@@ -56,12 +56,17 @@ public class scp_Player_Hit : MonoBehaviour
     {
         _CurrentHealth--;
         _HealthBar.SetHealth(_CurrentHealth);
-        Debug.Log("Health: " + _CurrentHealth);
         invincible = true;
         playerManager._Hit = true;
 
         yield return new WaitForSeconds(IFrames);
         playerManager._Hit = false;
         invincible = false;
+    }
+
+    public void SetHealthBar()
+    {
+        _HealthBar.SetHealth(_CurrentHealth);
+
     }
 }

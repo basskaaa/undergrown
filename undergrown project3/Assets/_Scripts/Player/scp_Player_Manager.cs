@@ -5,11 +5,10 @@ using UnityEngine.InputSystem;
 public class scp_Player_Manager : MonoBehaviour
 {
     public bool _Dead = false;
-    private bool deadCheck = false;
+    public bool deadCheck = false;
     public bool _Attacking = false;
     public bool _Hit = false;
     public bool _Jump = false;
-    [SerializeField] private bool canMoveCheck = true;
     [SerializeField] private GameObject uiDeath;
     [SerializeField] private GameObject swordSeed;
     [SerializeField] private Light healthLight;
@@ -27,12 +26,16 @@ public class scp_Player_Manager : MonoBehaviour
     [HideInInspector] public ThirdPersonController _ThirdPersonController;
     [HideInInspector] public scp_Player_Animation _AnimManager;
     [HideInInspector] public scp_Player_Hit _HealthManager;
+    [HideInInspector] public scp_Player_Attack _AttackManager;
+    bool spawnedSeeds = false;
+
 
     private void Start()
     {
         _ThirdPersonController = _Player.GetComponent<ThirdPersonController>();
         _AnimManager = _Player.GetComponent<scp_Player_Animation>();
         _HealthManager = _Player.GetComponentInChildren<scp_Player_Hit>();
+        _AttackManager = _Player.GetComponent<scp_Player_Attack>();
         uiDeath.SetActive(false);
         maxHealth = _HealthManager._MaxHealth;
     }
@@ -43,19 +46,32 @@ public class scp_Player_Manager : MonoBehaviour
         healthFloat = currentHealth / maxHealth;
         //healthLight.intensity = healthFloat;
 
-        if (_Dead && !deadCheck) canMoveCheck = false;
+        if (_AttackManager.attackAmmo == 0 && !spawnedSeeds)
+        {
+            SpawnSeeds();
+            spawnedSeeds = true;
+        }
+        if (_AttackManager.attackAmmo > 0 && spawnedSeeds)
+        {
+            spawnedSeeds = false;
+        }
 
-        if (!canMoveCheck) death();
+
+        if (_Dead)
+        {
+            Cursor.lockState = false ? CursorLockMode.None : CursorLockMode.None;
+            if (!deadCheck) death();
+        }
+
         if (_Attacking) _AttackMove();
         if (!_Attacking && !_Dead) canMove();
     }
 
     private void death()
-    {     
+    {
         _ThirdPersonController.enabled = false;
         uiDeath.SetActive(true);
         deadCheck = true;
-        Cursor.lockState = false ? CursorLockMode.None : CursorLockMode.None;
     }
 
     private void canMove()
@@ -72,5 +88,27 @@ public class scp_Player_Manager : MonoBehaviour
         _ThirdPersonController.SprintSpeed = 0f;
         _ThirdPersonController.SpeedChangeRate = 20f;
         _ThirdPersonController.JumpHeight = 3f;
+    }
+
+    private void SpawnSeeds()
+    {
+        int i = 0;
+        int randSeedNumber = Random.Range(1, 4);
+        Vector3 seedSpawnTf = _Player.transform.position;
+        seedSpawnTf.y = 2f;
+        Debug.Log(i);
+        while (i < randSeedNumber)
+        {
+            Instantiate(swordSeed, seedSpawnTf, Quaternion.identity);
+            i++;
+        }
+    }
+
+    public void PlayerRespawn()
+    {
+        _Dead = false; deadCheck = false;
+        _ThirdPersonController.enabled = true;
+        uiDeath.SetActive(false);
+        Cursor.lockState = true ? CursorLockMode.Locked : CursorLockMode.None;
     }
 }

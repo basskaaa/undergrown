@@ -29,7 +29,6 @@ public class scp_MusicManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && !huntCheck)
         {
-            Debug.Log("Entered hunt");
             StartCoroutine(SetHuntMusic());
         }
     }

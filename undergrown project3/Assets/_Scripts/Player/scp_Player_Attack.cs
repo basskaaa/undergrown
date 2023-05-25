@@ -10,6 +10,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class scp_Player_Attack : MonoBehaviour
 {
     [SerializeField] private GameObject Sword;
+    [SerializeField] private GameObject RespawnPos;
     private Collider swordCollider;
 
     private scp_Player_Manager_Holder h;
@@ -51,12 +52,14 @@ public class scp_Player_Attack : MonoBehaviour
 
         if (attackAmmo==0)
         {
+            Sword.SetActive(false);
             swordIcon.color = new Color(swordIcon.color.r, swordIcon.color.g, swordIcon.color.b, 0.3f);
             attackAmmoCount.color = new Color(attackAmmoCount.color.r, attackAmmoCount.color.g, attackAmmoCount.color.b, 0.3f);
         }
 
         if (attackAmmo>0)
         {
+            Sword.SetActive(true);
             swordIcon.color = new Color(swordIcon.color.r, swordIcon.color.g, swordIcon.color.b, 1f);
             attackAmmoCount.color = new Color(attackAmmoCount.color.r, attackAmmoCount.color.g, attackAmmoCount.color.b, 1f);
         }
@@ -76,5 +79,10 @@ public class scp_Player_Attack : MonoBehaviour
     {
         attackAmmo = attackAmmo + 10;
         attackAmmoCount.text = attackAmmo.ToString();
+    }
+
+    public void ResetPos()
+    {
+        transform.SetPositionAndRotation(RespawnPos.transform.position, RespawnPos.transform.rotation); 
     }
 }

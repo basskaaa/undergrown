@@ -39,7 +39,7 @@ public class scp_Player_Sword : MonoBehaviour
 
         if (manager._Attacking && collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("sword hit " + collision.gameObject.name);
+            //Debug.Log("sword hit " + collision.gameObject.name);
 
             particleSpawnTf = collision.transform.position;
             GameObject clone = (GameObject)Instantiate(SwordParticles, particleSpawnTf, Quaternion.identity);

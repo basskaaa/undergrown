@@ -211,7 +211,7 @@ Transform:
   - {fileID: 5412534695607406292}
   - {fileID: 1869975949}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -187.979, z: 0}
 --- !u!95 &5412534693608701046
 Animator:
@@ -291,6 +291,7 @@ MonoBehaviour:
   _MusicManager: {fileID: 0}
   huntManager: {fileID: 5412534694173032473}
   attackManager: {fileID: 5412534695607406293}
+  Mesh: {fileID: 5412534693656908320}
   swordC: {fileID: 5412534695229573658}
   _Patrolling: 1
   _Hunting: 0
