@@ -55,7 +55,7 @@ public class scp_MusicManager : MonoBehaviour
         huntCheck = true;
 
         yield return new WaitForSeconds(0.1f);
-        music.pitch = 1.2f;
+        music.pitch = Mathf.MoveTowards(music.pitch,1.2f, (1/2) * Time.deltaTime); 
     }
 
     public IEnumerator SetIdleMusic()
@@ -64,6 +64,6 @@ public class scp_MusicManager : MonoBehaviour
         huntCheck = false;
 
         yield return new WaitForSeconds(20f);
-        music.pitch = 0.8f;
+        music.pitch = Mathf.MoveTowards(music.pitch, 0.8f, (1 / 6) * Time.deltaTime);
     }
 }

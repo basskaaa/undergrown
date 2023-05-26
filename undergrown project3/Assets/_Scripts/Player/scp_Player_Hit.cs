@@ -17,6 +17,9 @@ public class scp_Player_Hit : MonoBehaviour
 
     private bool invincible;
 
+    [SerializeField] private GameObject deathsound;
+    [SerializeField] private GameObject skeleAttackSound;
+
     private void Start()
     {
         h = GetComponentInParent<scp_Player_Manager_Holder>();
@@ -32,6 +35,8 @@ public class scp_Player_Hit : MonoBehaviour
         {
             playerManager._Dead = true;
             Debug.Log("You died");
+            GameObject clone = (GameObject)Instantiate(deathsound, transform.position, Quaternion.identity);
+            Destroy(clone, 2.0f);
         }
     }
 
@@ -48,7 +53,10 @@ public class scp_Player_Hit : MonoBehaviour
 
             particleSpawnTf = collision.transform.position;
             GameObject clone = (GameObject)Instantiate(hitPlayerParticles, particleSpawnTf, Quaternion.identity);
+            GameObject clone1 = (GameObject)Instantiate(skeleAttackSound, particleSpawnTf, Quaternion.identity);
             Destroy(clone, 1.0f);
+            Destroy(clone1, 1.0f);
+
         }
     }    
 

@@ -11,6 +11,7 @@ public class scp_Player_Manager : MonoBehaviour
     public bool _Jump = false;
     [SerializeField] private GameObject uiDeath;
     [SerializeField] private GameObject swordSeed;
+    [SerializeField] private GameObject respawnSound;
     [SerializeField] private Light healthLight;
 
     [SerializeField] private float move = 20f;
@@ -110,5 +111,7 @@ public class scp_Player_Manager : MonoBehaviour
         _ThirdPersonController.enabled = true;
         uiDeath.SetActive(false);
         Cursor.lockState = true ? CursorLockMode.Locked : CursorLockMode.None;
+        GameObject clone = (GameObject)Instantiate(respawnSound, _Player.transform.position, Quaternion.identity);
+        Destroy(clone, 2.0f);
     }
 }

@@ -11,6 +11,10 @@ public class scp_Player_Attack : MonoBehaviour
 {
     [SerializeField] private GameObject Sword;
     [SerializeField] private GameObject RespawnPos;
+    [SerializeField] private GameObject AttackSound;
+    [SerializeField] private GameObject SeedSpawnSound;
+    private bool seedSpawnSoundPlayed;
+    [SerializeField] private GameObject FlowerCollectSound;
     private Collider swordCollider;
 
     private scp_Player_Manager_Holder h;
@@ -42,19 +46,20 @@ public class scp_Player_Attack : MonoBehaviour
             playerManager._Attacking = true;
             attackAmmo--;
             attackAmmoCount.text = attackAmmo.ToString();
-        }
-
-        if (playerManager._Attacking)
-        {
+            GameObject clone = (GameObject)Instantiate(AttackSound, transform.position, Quaternion.identity);
+            Destroy(clone, 1.0f);
             playerManager._AttackMove();
             StartCoroutine(Attack());
         }
 
-        if ((attackAmmo)==0)
+        if ((attackAmmo)==0 && !seedSpawnSoundPlayed)
         {
-            Sword.SetActive(false);
+            GameObject clone = (GameObject)Instantiate(SeedSpawnSound, transform.position, Quaternion.identity);
+            Destroy(clone, 1.0f);
             swordIcon.color = new Color(swordIcon.color.r, swordIcon.color.g, swordIcon.color.b, 0.3f);
             attackAmmoCount.color = new Color(attackAmmoCount.color.r, attackAmmoCount.color.g, attackAmmoCount.color.b, 0.3f);
+            Sword.SetActive(false);
+            seedSpawnSoundPlayed = true;
         }
 
         if ((attackAmmo)>0)
@@ -62,6 +67,7 @@ public class scp_Player_Attack : MonoBehaviour
             Sword.SetActive(true);
             swordIcon.color = new Color(swordIcon.color.r, swordIcon.color.g, swordIcon.color.b, 1f);
             attackAmmoCount.color = new Color(attackAmmoCount.color.r, attackAmmoCount.color.g, attackAmmoCount.color.b, 1f);
+            seedSpawnSoundPlayed=false;
         }
     }
 
@@ -79,6 +85,8 @@ public class scp_Player_Attack : MonoBehaviour
     {
         attackAmmo = attackAmmo + 10;
         attackAmmoCount.text = attackAmmo.ToString();
+        GameObject clone = (GameObject)Instantiate(FlowerCollectSound, transform.position, Quaternion.identity);
+        Destroy(clone, 1.0f);
     }
 
     public void ResetPos()
