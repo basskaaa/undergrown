@@ -8,6 +8,7 @@ public class scp_Enemy_Manager : MonoBehaviour
     public bool _PlayerDead;
     public bool _PlayerAttacking;
     public float _WaitToDestroy = 30f;
+    public int killed;
 
     private void Update()
     {

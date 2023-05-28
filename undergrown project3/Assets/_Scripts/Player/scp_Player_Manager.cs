@@ -16,9 +16,9 @@ public class scp_Player_Manager : MonoBehaviour
     [SerializeField] private GameObject PlayerParticles;
     [SerializeField] private Light healthLight;
 
-    [SerializeField] private float move = 20f;
-    [SerializeField] private float run = 40f;
-    [SerializeField] private float speedChangeRate = 10f;
+    [SerializeField] private float move = 8f;
+    [SerializeField] private float run = 17f;
+    [SerializeField] private float speedChangeRate = 5f;
     [SerializeField] private float jumpHeight = 3f;
     private float healthFloat;
     [SerializeField] private int maxHealth;
@@ -101,10 +101,11 @@ public class scp_Player_Manager : MonoBehaviour
         int i = 0;
         int randSeedNumber = Random.Range(1, 4);
         Vector3 seedSpawnTf = _Player.transform.position;
-        seedSpawnTf.y = 2f;
+        seedSpawnTf.y = seedSpawnTf.y + 1.5f;
         Debug.Log(i);
         while (i < randSeedNumber)
         {
+            Debug.Log(seedSpawnTf);
             Instantiate(swordSeed, seedSpawnTf, Quaternion.identity);
             i++;
         }

@@ -11,8 +11,9 @@ public class scp_NextLevel : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         { 
+            Debug.Log("Loading level " + currentLevel + 1);
             currentLevel = SceneManager.GetActiveScene().buildIndex;
-             SceneManager.LoadScene(currentLevel + 1);
+            SceneManager.LoadScene(currentLevel + 1);
         }
     }
 }

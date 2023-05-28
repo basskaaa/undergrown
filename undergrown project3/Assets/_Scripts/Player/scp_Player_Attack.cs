@@ -46,13 +46,13 @@ public class scp_Player_Attack : MonoBehaviour
             playerManager._Attacking = true;
             attackAmmo--;
             attackAmmoCount.text = attackAmmo.ToString();
-            GameObject clone = (GameObject)Instantiate(AttackSound, transform.position, Quaternion.identity);
+            GameObject clone = (GameObject)Instantiate(AttackSound, Sword.transform.position, Quaternion.identity);
             Destroy(clone, 1.0f);
             playerManager._AttackMove();
             StartCoroutine(Attack());
         }
 
-        if ((attackAmmo)<=0 && !seedSpawnSoundPlayed && spawnSeeds)
+        if (attackAmmo==0 && !seedSpawnSoundPlayed && spawnSeeds)
         {
             GameObject clone = (GameObject)Instantiate(SeedSpawnSound, transform.position, Quaternion.identity);
             Destroy(clone, 1.0f);
@@ -62,7 +62,7 @@ public class scp_Player_Attack : MonoBehaviour
             seedSpawnSoundPlayed = true;
         }
 
-        if ((attackAmmo)>0)
+        if (attackAmmo>0)
         {
             swordIcon.enabled = true;
             attackAmmoCount.enabled = true;
@@ -70,6 +70,7 @@ public class scp_Player_Attack : MonoBehaviour
             swordIcon.color = new Color(swordIcon.color.r, swordIcon.color.g, swordIcon.color.b, 1f);
             attackAmmoCount.color = new Color(attackAmmoCount.color.r, attackAmmoCount.color.g, attackAmmoCount.color.b, 1f);
             seedSpawnSoundPlayed=false;
+            spawnSeeds = true;
         }
 
         if (attackAmmo == -1)

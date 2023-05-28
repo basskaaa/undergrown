@@ -25,6 +25,7 @@ public class scp_Enemy_AI : MonoBehaviour
     private scp_Enemy_AI_Hit hitManager;
     private scp_Enemy_Sword swordManager;
     private scp_Enemy_Counter enemyCounter;
+    private scp_setPlants plantScript;
     private Transform playerTf;
     private Transform myTf;
     [SerializeField] private GameObject[] waypoints;
@@ -56,6 +57,7 @@ public class scp_Enemy_AI : MonoBehaviour
         _MusicManager = FindObjectOfType<scp_MusicManager>();
         respawnManager = FindObjectOfType<scp_Respawn>();
         enemyCounter = FindObjectOfType<scp_Enemy_Counter>();
+        plantScript = FindObjectOfType<scp_setPlants>();
         agent = GetComponent<NavMeshAgent>();
         capsule = GetComponent<Collider>();
         myTf = GetComponent<Transform>();
@@ -76,6 +78,8 @@ public class scp_Enemy_AI : MonoBehaviour
         MaxHealth = hitManager._MaxHealth;
 
         updateBehaviour();
+
+        if (plantScript != null && plantScript.endGame) Destroy(gameObject);
 
         if (!_Dying)
         {
@@ -210,9 +214,10 @@ public class scp_Enemy_AI : MonoBehaviour
         capsule.enabled = false;
         swordC.enabled = false;
         _Dead = true;
+        _EnemyManager.killed++;
         huntManager.SetActive(false); attackManager.SetActive(false);
         _Patrolling = false; _Resting = false; _Hunting = false; _Attacking = false;
-        enemyCounter.DecreaseCounter();
+        if (enemyCounter != null) enemyCounter.DecreaseCounter();
     }
 
     public void EnemyRespawn()

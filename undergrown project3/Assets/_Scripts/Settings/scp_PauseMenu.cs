@@ -20,6 +20,7 @@ public class scp_PauseMenu : MonoBehaviour
     {
         player = FindObjectOfType<scp_Player_Manager>();
         respawnM = FindObjectOfType<scp_Respawn>();
+        if (respawnM == null) Debug.Log("No respawn");
         audioSource = GetComponent<AudioSource>();
     }
 
