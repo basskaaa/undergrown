@@ -11,6 +11,7 @@ public class scp_setPlants : MonoBehaviour
     [SerializeField] private GameObject endGameUi;
     [SerializeField] private GameObject endGameParticles;
     [SerializeField] private GameObject endGameSound;
+    [SerializeField] private GameObject music;
     [SerializeField] private scp_Player_Manager manager;
 
     private bool inRange;
@@ -63,6 +64,7 @@ public class scp_setPlants : MonoBehaviour
         plantUi.SetActive(false);
         hud.SetActive(false);
         Destroy(deathUi);
+        Destroy(music);
         endGameUi.SetActive(true);
         GameObject clone = (GameObject)Instantiate(endGameParticles, transform.position, Quaternion.identity);
         GameObject clone1 = (GameObject)Instantiate(endGameSound, transform.position, Quaternion.identity);

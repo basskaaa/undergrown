@@ -4434,6 +4434,7 @@ MonoBehaviour:
   endGameUi: {fileID: 2494548443469315921}
   endGameParticles: {fileID: 9019991739975718056, guid: c5e37b6ebe67b704caa34c49fa1718d6, type: 3}
   endGameSound: {fileID: 1718933560748056917, guid: 1e08707a6cd08254eba84f0f9d14a38e, type: 3}
+  music: {fileID: 904859803}
   manager: {fileID: 0}
   endGame: 0
 --- !u!54 &1926685583
@@ -6557,6 +6558,7 @@ MonoBehaviour:
   _PlayerDead: 0
   _PlayerAttacking: 0
   _WaitToDestroy: 30
+  killed: 0
 --- !u!1 &3376205596031929615
 GameObject:
   m_ObjectHideFlags: 0
