@@ -7,21 +7,31 @@ public class scp_MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject newGameMenu;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void NewGame()
     {
-        SceneManager.LoadScene(1);
-        Cursor.lockState = true ? CursorLockMode.Locked : CursorLockMode.None;
+        audioSource.Play();
+        newGameMenu.SetActive(true);
+        mainMenu.SetActive(false);
     }
 
     public void Settings()
     {
+        audioSource.Play();
         settingsMenu.SetActive(true);
         mainMenu.SetActive(false);
     }
 
     public void Quit()
     {
+        audioSource.Play();
         Debug.Log("Quit");
         Application.Quit();
     }

@@ -21,11 +21,13 @@ public class scp_Enemy_AI : MonoBehaviour
     [SerializeField] private GameObject huntManager;
     [SerializeField] private GameObject attackManager;
     [SerializeField] private GameObject Mesh;
+    [SerializeField] private GameObject SkeleDeathSound;
     private scp_Enemy_AI_Hit hitManager;
     private scp_Enemy_Sword swordManager;
+    private scp_Enemy_Counter enemyCounter;
     private Transform playerTf;
     private Transform myTf;
-    private Transform[] waypoints;
+    [SerializeField] private GameObject[] waypoints;
     private Light healthLight;
 
 
@@ -53,6 +55,7 @@ public class scp_Enemy_AI : MonoBehaviour
         _EnemyManager = FindObjectOfType<scp_Enemy_Manager>();
         _MusicManager = FindObjectOfType<scp_MusicManager>();
         respawnManager = FindObjectOfType<scp_Respawn>();
+        enemyCounter = FindObjectOfType<scp_Enemy_Counter>();
         agent = GetComponent<NavMeshAgent>();
         capsule = GetComponent<Collider>();
         myTf = GetComponent<Transform>();
@@ -60,8 +63,9 @@ public class scp_Enemy_AI : MonoBehaviour
         swordManager = GetComponentInChildren<scp_Enemy_Sword>();
         healthLight = GetComponentInChildren<Light>();
         playerTf = _EnemyManager._Player.transform;
-        waypoints = _EnemyManager._Waypoints;
-        
+        waypoints = GameObject.FindGameObjectsWithTag("waypoint");
+
+
         updateDestination();
         updateBehaviour();
     }
@@ -152,13 +156,14 @@ public class scp_Enemy_AI : MonoBehaviour
 
     private void iterateWaypointIndex()
     {
-        int randWaypointIndex = Random.Range(0, 6);
+        int randWaypointIndex = Random.Range(0, waypoints.Length);
+        Debug.Log(randWaypointIndex);
         waypointIndex = randWaypointIndex;
     }
 
     private void updateDestination()
     {
-        target = waypoints[waypointIndex].position;
+        target = waypoints[waypointIndex].transform.position;
         agent.SetDestination(target);
     }
 
@@ -199,12 +204,15 @@ public class scp_Enemy_AI : MonoBehaviour
     private void WaitToDie()
     {
         Debug.Log(gameObject.name + " died");
+        GameObject clone = (GameObject)Instantiate(SkeleDeathSound, transform.position, Quaternion.identity);
+        Destroy(clone, 1.0f);
         agent.speed = 0f;
         capsule.enabled = false;
         swordC.enabled = false;
         _Dead = true;
         huntManager.SetActive(false); attackManager.SetActive(false);
         _Patrolling = false; _Resting = false; _Hunting = false; _Attacking = false;
+        enemyCounter.DecreaseCounter();
     }
 
     public void EnemyRespawn()

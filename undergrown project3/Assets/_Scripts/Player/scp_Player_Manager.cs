@@ -6,12 +6,14 @@ public class scp_Player_Manager : MonoBehaviour
 {
     public bool _Dead = false;
     public bool deadCheck = false;
+    public static int deathCount;
     public bool _Attacking = false;
     public bool _Hit = false;
     public bool _Jump = false;
     [SerializeField] private GameObject uiDeath;
     [SerializeField] private GameObject swordSeed;
     [SerializeField] private GameObject respawnSound;
+    [SerializeField] private GameObject PlayerParticles;
     [SerializeField] private Light healthLight;
 
     [SerializeField] private float move = 20f;
@@ -73,6 +75,9 @@ public class scp_Player_Manager : MonoBehaviour
         _ThirdPersonController.enabled = false;
         uiDeath.SetActive(true);
         deadCheck = true;
+        deathCount++;
+        GameObject clone1 = (GameObject)Instantiate(PlayerParticles, _Player.transform.position, Quaternion.identity);
+        Destroy(clone1, 3.0f);
     }
 
     private void canMove()
@@ -113,5 +118,7 @@ public class scp_Player_Manager : MonoBehaviour
         Cursor.lockState = true ? CursorLockMode.Locked : CursorLockMode.None;
         GameObject clone = (GameObject)Instantiate(respawnSound, _Player.transform.position, Quaternion.identity);
         Destroy(clone, 2.0f);
+        GameObject clone1 = (GameObject)Instantiate(PlayerParticles, _Player.transform.position, Quaternion.identity);
+        Destroy(clone1, 3.0f);
     }
 }

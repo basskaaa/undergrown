@@ -6,30 +6,22 @@ public class scp_Respawn : MonoBehaviour
 {
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject RespawnPos;
-    [SerializeField] private GameObject[] Enemy;
     [SerializeField] private GameObject[] SwordFlower;
 
-    private Transform playerSpawnTf;
     private scp_Player_Manager playerManager;
     private scp_Player_Attack playerAttack;
     private scp_Player_Hit playerHealth;
-    private scp_Enemy_AI[] enemyAi;
-    private scp_SwordFlower[] flowerScript;
+    private scp_Enemy_Counter enemyCounter;
+
 
     public bool respawnCheck;
 
     private void Start()
     {
-        playerSpawnTf = Player.transform;
         playerManager = FindObjectOfType<scp_Player_Manager>();
         playerHealth = FindObjectOfType<scp_Player_Hit>();
         playerAttack = FindObjectOfType<scp_Player_Attack>();
-        Enemy = GameObject.FindGameObjectsWithTag("Enemy");
-    }
-
-    private void Update()
-    {
-        SwordFlower = GameObject.FindGameObjectsWithTag("swordFlower");
+        enemyCounter = FindObjectOfType<scp_Enemy_Counter>();
     }
 
     public void Respawn()
@@ -55,6 +47,7 @@ public class scp_Respawn : MonoBehaviour
         playerHealth._CurrentHealth = playerHealth._MaxHealth;
         playerHealth.SetHealthBar();
         playerManager.PlayerRespawn();
+        if (enemyCounter != null) enemyCounter.ResetCounter();
     }
 
     public void SetFlowers()

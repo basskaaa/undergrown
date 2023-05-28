@@ -9,6 +9,7 @@ public class scp_SwordFlower : MonoBehaviour
     [SerializeField] private scp_Player_Attack attackScript;
     private bool inRange;
     public bool flower = false;
+    private Rigidbody rb;
     [SerializeField] private GameObject flowerObj;
     [SerializeField] private GameObject seedObj;
 
@@ -16,6 +17,7 @@ public class scp_SwordFlower : MonoBehaviour
     private void Start()
     {
         attackScript = FindObjectOfType<scp_Player_Attack>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -50,6 +52,7 @@ public class scp_SwordFlower : MonoBehaviour
         seedObj.SetActive(false );
         flower = true;
         transform.rotation = new Quaternion(0, 0, 0, 0);
-        Debug.Log(gameObject.name + " set to flower");
+        rb.useGravity = false;
+        //Debug.Log(gameObject.name + " set to flower");
     }
 }

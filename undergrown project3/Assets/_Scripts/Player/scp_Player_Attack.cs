@@ -22,6 +22,7 @@ public class scp_Player_Attack : MonoBehaviour
     [SerializeField] private float attackCooldown = 0.4f;
     private bool attackReady = true;
     private bool isDead;
+    [SerializeField] private bool spawnSeeds = true;
 
     public int attackAmmo;
     [SerializeField] private TextMeshProUGUI attackAmmoCount;
@@ -35,7 +36,6 @@ public class scp_Player_Attack : MonoBehaviour
         isDead = playerManager._Dead;
 
         //test
-        attackAmmo = 11;
         attackAmmoCount.text = (attackAmmo - 1).ToString();
     }
 
@@ -52,7 +52,7 @@ public class scp_Player_Attack : MonoBehaviour
             StartCoroutine(Attack());
         }
 
-        if ((attackAmmo)==0 && !seedSpawnSoundPlayed)
+        if ((attackAmmo)<=0 && !seedSpawnSoundPlayed && spawnSeeds)
         {
             GameObject clone = (GameObject)Instantiate(SeedSpawnSound, transform.position, Quaternion.identity);
             Destroy(clone, 1.0f);
@@ -64,10 +64,20 @@ public class scp_Player_Attack : MonoBehaviour
 
         if ((attackAmmo)>0)
         {
+            swordIcon.enabled = true;
+            attackAmmoCount.enabled = true;
             Sword.SetActive(true);
             swordIcon.color = new Color(swordIcon.color.r, swordIcon.color.g, swordIcon.color.b, 1f);
             attackAmmoCount.color = new Color(attackAmmoCount.color.r, attackAmmoCount.color.g, attackAmmoCount.color.b, 1f);
             seedSpawnSoundPlayed=false;
+        }
+
+        if (attackAmmo == -1)
+        {
+            swordIcon.enabled = false;
+            attackAmmoCount.enabled = false;
+            spawnSeeds = false;
+            Sword.SetActive(false);
         }
     }
 

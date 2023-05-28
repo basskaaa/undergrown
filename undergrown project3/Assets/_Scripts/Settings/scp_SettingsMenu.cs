@@ -10,6 +10,7 @@ public class scp_SettingsMenu : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private AudioSource music;
 
+    private AudioSource audioSource;
     private scp_PauseMenu pauseScript;
 
     public AudioMixer audioMixer;
@@ -17,6 +18,7 @@ public class scp_SettingsMenu : MonoBehaviour
     private void Start()
     {
         pauseScript = GetComponent<scp_PauseMenu>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void SetVolume(float volume)
@@ -26,6 +28,7 @@ public class scp_SettingsMenu : MonoBehaviour
 
     public void Back()
     {
+        audioSource.Play();
         if (pauseScript != null) pauseScript.InSettings = false;
         if (mainMenu != null) mainMenu.SetActive(true);
         if (pauseMenu != null) pauseMenu.SetActive(true);

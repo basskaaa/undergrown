@@ -3181,6 +3181,7 @@ MonoBehaviour:
   huntManager: {fileID: 2004005714012919521}
   attackManager: {fileID: 2004005714457545778}
   Mesh: {fileID: 2004005713941683069}
+  SkeleDeathSound: {fileID: 2513438411135933883, guid: 1249bdc01c68d1d4b97fd57d72184a24, type: 3}
   swordC: {fileID: 2004005713642850692}
   _Patrolling: 1
   _Hunting: 0

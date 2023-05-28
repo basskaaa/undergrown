@@ -12,11 +12,15 @@ public class scp_PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     [SerializeField] private GameObject settingsMenu;
     private scp_Player_Manager player;
+    private scp_Respawn respawnM;
+    private AudioSource audioSource;
 
 
     private void Start()
     {
         player = FindObjectOfType<scp_Player_Manager>();
+        respawnM = FindObjectOfType<scp_Respawn>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -32,6 +36,7 @@ public class scp_PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        audioSource.Play();
         pauseMenuUI.SetActive(false);
         settingsMenu.SetActive(false);
         Time.timeScale = 1f;
@@ -41,6 +46,7 @@ public class scp_PauseMenu : MonoBehaviour
 
     void Pause()
     {
+        audioSource.Play();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
@@ -49,14 +55,22 @@ public class scp_PauseMenu : MonoBehaviour
 
     public void Quit()
     {
+        audioSource.Play();
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 
     public void Settings()
     {
+        audioSource.Play();
         InSettings = true;
         settingsMenu.SetActive(true);
         pauseMenuUI.SetActive(false);
+    }
+
+    public void Respawn()
+    {
+        respawnM.Respawn();
+        Resume();
     }
 }

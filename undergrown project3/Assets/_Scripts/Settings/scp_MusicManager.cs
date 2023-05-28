@@ -9,21 +9,13 @@ public class scp_MusicManager : MonoBehaviour
     private bool huntCheck;
     public bool hunted;
     private bool idleCheck;
-    private scp_PauseMenu pauseScript;
     private bool pauseCheck;
-
-    private void Start()
-    {
-        pauseScript = FindObjectOfType<scp_PauseMenu>();
-    }
 
     private void Update()
     {
-        if (scp_PauseMenu.GameIsPaused && !pauseCheck) music.pitch = 0.75f; pauseCheck = true;
-        if (!scp_PauseMenu.GameIsPaused && !pauseCheck) music.pitch = 0.8f; pauseCheck = false;
+        if (scp_PauseMenu.GameIsPaused && !pauseCheck) music.pitch = 0.5f; pauseCheck = true;
+        if (!scp_PauseMenu.GameIsPaused && pauseCheck) music.pitch = 0.7f; pauseCheck = false;
     }
-
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -55,7 +47,7 @@ public class scp_MusicManager : MonoBehaviour
         huntCheck = true;
 
         yield return new WaitForSeconds(0.1f);
-        music.pitch = Mathf.MoveTowards(music.pitch,1.2f, (1/2) * Time.deltaTime); 
+        music.pitch = Mathf.MoveTowards(music.pitch,0.9f, (1/2) * Time.deltaTime); 
     }
 
     public IEnumerator SetIdleMusic()
@@ -64,6 +56,6 @@ public class scp_MusicManager : MonoBehaviour
         huntCheck = false;
 
         yield return new WaitForSeconds(20f);
-        music.pitch = Mathf.MoveTowards(music.pitch, 0.8f, (1 / 6) * Time.deltaTime);
+        music.pitch = Mathf.MoveTowards(music.pitch, 0.6f, (1 / 6) * Time.deltaTime);
     }
 }
