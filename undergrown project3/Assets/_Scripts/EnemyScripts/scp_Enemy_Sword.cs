@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
-
 public class scp_Enemy_Sword : MonoBehaviour
 {
     private scp_Enemy_AI ai;

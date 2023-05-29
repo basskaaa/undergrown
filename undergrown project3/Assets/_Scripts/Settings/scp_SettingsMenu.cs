@@ -8,6 +8,7 @@ public class scp_SettingsMenu : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject controlsMenu;
     [SerializeField] private AudioSource music;
 
     private AudioSource audioSource;
@@ -24,6 +25,13 @@ public class scp_SettingsMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
+    }
+
+    public void Controls()
+    {
+        audioSource.Play();
+        if (controlsMenu != null) settingsMenu.SetActive(false);
+        if (controlsMenu != null) controlsMenu.SetActive(true);
     }
 
     public void Back()

@@ -16,10 +16,10 @@ public class scp_Player_Manager : MonoBehaviour
     [SerializeField] private GameObject PlayerParticles;
     [SerializeField] private Light healthLight;
 
-    [SerializeField] private float move = 8f;
-    [SerializeField] private float run = 17f;
-    [SerializeField] private float speedChangeRate = 5f;
-    [SerializeField] private float jumpHeight = 3f;
+    [SerializeField] private float move;
+    [SerializeField] private float run;
+    [SerializeField] private float speedChangeRate;
+    [SerializeField] private float jumpHeight;
     private float healthFloat;
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
